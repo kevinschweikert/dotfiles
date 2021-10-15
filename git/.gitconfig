@@ -1,0 +1,9 @@
+[user]
+	email = kevin@kevinschweikert.de
+	name = Kevin Schweikert
+[credential]
+	helper = store
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
