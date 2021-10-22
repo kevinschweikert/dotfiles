@@ -1,6 +1,6 @@
 vim.cmd('colorscheme onedark')
-vim.cmd('set termguicolors')
-vim.cmd('syntax on')
+vim.bo.syntax = "on"
+vim.o.termguicolors = true
 vim.wo.number = true
 vim.o.autoindent = true
 vim.o.smarttab = true
@@ -21,19 +21,23 @@ vim.o.expandtab = true
 vim.o.scrolloff = 8
 
 
+local opts = {noremap = true, silent = true}
+
 vim.g.mapleader = " "
-vim.api.nvim_set_keymap('n', '<Leader>ff', ':NvimTreeToggle<CR>', {noremap =true})
-vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files<CR>', {noremap =true})
-vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope grep_string<CR>', {noremap =true})
-vim.api.nvim_set_keymap('n', '<Leader>r', ':Telescope lsp_references<CR>', {noremap =true})
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', {noremap =true})
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprev<CR>', {noremap =true})
+vim.api.nvim_set_keymap('n', '<Leader>ff', ':NvimTreeToggle<CR>', opts)
+vim.api.nvim_set_keymap('n', '<Leader>p', ':Telescope find_files<CR>', opts)
+vim.api.nvim_set_keymap('n', '<Leader>g', ':Telescope grep_string<CR>', opts)
+vim.api.nvim_set_keymap('n', '<Leader>r', ':Telescope lsp_references<CR>', opts)
+vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', opts)
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprev<CR>', opts)
 
-vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', {noremap =true})
-vim.api.nvim_set_keymap('n', '<A-j>', ':m .-2<CR>==', {noremap =true})
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .+1<CR>==', opts)
+vim.api.nvim_set_keymap('n', '<A-j>', ':m .-2<CR>==', opts)
 
-vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .+1<CR>==gi', {noremap =true})
-vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', {noremap =true})
+vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .+1<CR>==gi', opts)
+vim.api.nvim_set_keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', opts)
+
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
 vim.g.dashboard_default_executive = "telescope"
 
