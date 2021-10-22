@@ -83,13 +83,14 @@ end
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
   for _, server in pairs(servers) do
     nvim_lsp[server].setup{
+    capabilities = capabilities,
 	on_attach = on_attach,
 	flags = {
 		debounce_text_changes = 150,
