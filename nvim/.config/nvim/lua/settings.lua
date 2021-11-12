@@ -1,4 +1,5 @@
 vim.cmd('colorscheme onedark')
+vim.cmd('filetype plugin indent on')
 vim.bo.syntax = "on"
 vim.o.termguicolors = true
 vim.wo.number = true
