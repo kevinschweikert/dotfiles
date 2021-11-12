@@ -1,0 +1,6 @@
+make
+stow
+git
+curl
+fish
+
