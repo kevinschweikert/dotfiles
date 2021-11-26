@@ -8,13 +8,16 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
 	use 'wbthomason/packer.nvim'
 	use 'neovim/nvim-lspconfig'
-	use 'kabouzeid/nvim-lspinstall'
+  use 'williamboman/nvim-lsp-installer'
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
+  use 'L3MON4D3/LuaSnip'
+  use 'onsails/lspkind-nvim'
+  use 'saadparwaiz1/cmp_luasnip'
 	use 'joshdick/onedark.vim'
 	use {
 	  'hoob3rt/lualine.nvim',
@@ -23,14 +26,12 @@ return require('packer').startup(function(use)
 	use 'ryanoasis/vim-devicons'
 	use {
 	  'nvim-telescope/telescope.nvim',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+	  requires = { {'nvim-lua/plenary.nvim'} , {'nvim-telescope/telescope-fzy-native.nvim'}}
 	}
-	use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
 	use {
 	    'kyazdani42/nvim-tree.lua',
 	    requires = 'kyazdani42/nvim-web-devicons'
 	}
-    use "glepnir/dashboard-nvim"
     use 'christoomey/vim-tmux-navigator'
     use 'mattn/emmet-vim'
     use 'tpope/vim-surround'
