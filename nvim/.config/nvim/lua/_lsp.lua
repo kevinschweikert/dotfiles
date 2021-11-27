@@ -81,7 +81,9 @@ cmp.setup{
       { name = 'nvim_lsp' },
       -- { name = 'vsnip' },
       { name = 'luasnip' },
-      { name = 'buffer' }
+      { name = 'buffer' },
+      { name = 'path' },
+      { name = 'nvim_lua' }
     },
     completion = {
     completeopt = 'menu,menuone,noinsert',

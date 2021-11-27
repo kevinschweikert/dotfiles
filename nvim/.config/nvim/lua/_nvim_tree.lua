@@ -1,5 +1,6 @@
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_respect_buf_cwd = 1
 
 require'nvim-tree'.setup {
   disable_netrw       = true,
@@ -9,7 +10,7 @@ require'nvim-tree'.setup {
   auto_close          = true,
   open_on_tab         = false,
   hijack_cursor       = false,
-  update_cwd          = false,
+  update_cwd          = true,
   update_to_buf_dir   = {
     enable = true,
     auto_open = true,
@@ -24,8 +25,8 @@ require'nvim-tree'.setup {
     }
   },
   update_focused_file = {
-    enable      = false,
-    update_cwd  = false,
+    enable      = true,
+    update_cwd  = true,
     ignore_list = {}
   },
   system_open = {

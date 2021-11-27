@@ -4,6 +4,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
+
 return require('packer').startup(function(use)
   -- Packer can manage itself
 	use 'wbthomason/packer.nvim'
@@ -15,6 +16,8 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-buffer'
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-nvim-lua'
   use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
   use 'saadparwaiz1/cmp_luasnip'
@@ -37,6 +40,11 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
     use 'tpope/vim-fugitive'
+    use 'folke/trouble.nvim'
+    use 'windwp/nvim-autopairs'
+    use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
+    use 'rcarriga/nvim-notify'
+    use 'ahmedkhalf/project.nvim'
 -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
