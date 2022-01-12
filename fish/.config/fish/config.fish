@@ -18,7 +18,7 @@ alias wget='wget -c'
 alias df='df -H'
 alias du='du -ch'
 
-alias apt-pdate="sudo apt update"
+alias apt-update="sudo apt update"
 alias apt-upgrade="sudo apt upgrade"
 
 alias nvimconf="nvim ~/.config/nvim/init.lua"
