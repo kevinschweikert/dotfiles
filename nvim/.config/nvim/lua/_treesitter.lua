@@ -3,5 +3,9 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
+    use_languagetree = true
   },
+  indent = {
+    enable = true
+  }
 }

@@ -17,10 +17,9 @@ return require('packer').startup(function(use)
 	use 'hrsh7th/cmp-vsnip'
 	use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lua'
-  use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim'
-  use 'saadparwaiz1/cmp_luasnip'
 	use 'joshdick/onedark.vim'
 	use {
 	  'hoob3rt/lualine.nvim',
@@ -31,20 +30,26 @@ return require('packer').startup(function(use)
 	  'nvim-telescope/telescope.nvim',
 	  requires = { {'nvim-lua/plenary.nvim'} , {'nvim-telescope/telescope-fzy-native.nvim'}}
 	}
-	use {
-	    'kyazdani42/nvim-tree.lua',
-	    requires = 'kyazdani42/nvim-web-devicons'
-	}
+	-- use {
+	--     'kyazdani42/nvim-tree.lua',
+	--     requires = 'kyazdani42/nvim-web-devicons'
+	-- }
     use 'christoomey/vim-tmux-navigator'
     use 'mattn/emmet-vim'
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
     use 'tpope/vim-fugitive'
-    use 'folke/trouble.nvim'
     use 'windwp/nvim-autopairs'
-    use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
-    use 'rcarriga/nvim-notify'
-    use 'ahmedkhalf/project.nvim'
+    use {
+  "folke/which-key.nvim",
+  config = function()
+    require("which-key").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
 -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
