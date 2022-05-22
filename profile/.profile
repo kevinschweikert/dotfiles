@@ -32,4 +32,3 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH=/home/kevin/.local/share/umake/bin:$PATH
-

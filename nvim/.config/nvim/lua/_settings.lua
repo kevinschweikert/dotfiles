@@ -64,7 +64,10 @@ opt.autoindent = true
 -- insert mode completion options
 opt.completeopt = 'menuone,noselect'
 
--- vim.cmd('filetype plugin indent on')
--- vim.bo.syntax = "on"
+vim.cmd('filetype plugin indent on')
+vim.bo.syntax = "on"
 
-
+vim.cmd([[
+filetype plugin indent on
+autocmd FileType yaml setl indentkeys-=<:>
+]])

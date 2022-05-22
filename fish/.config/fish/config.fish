@@ -32,3 +32,4 @@ alias vim="nvim"
 
 starship init fish | source
 
+fish_add_path -aP /home/kevin/scripts

@@ -2,7 +2,7 @@
 	email = kevin@kevinschweikert.de
 	name = Kevin Schweikert
 [credential]
-	helper = store
+	helper = /usr/lib/git-core/git-credential-libsecret
 [pull]
 	rebase = false
 [init]
@@ -16,3 +16,5 @@
 	s = status
 	new = switch -c
 	c = commit -m
+[core]
+	editor = nvim

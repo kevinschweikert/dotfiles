@@ -1,0 +1,51 @@
+---
+
+- name: setup system
+  hosts: localhost
+  connection: local
+
+  vars_files:
+    - config.yml
+
+  tasks:
+
+    
+  - name: install packages
+    package:
+     name: "{{ packages }}"
+
+  - name: install asdf
+    git:
+      version: "{{ asdf_version }}"
+      repo: 'https://github.com/asdf-vm/asdf.git'
+      dest: /home/kevin/.asdf/
+  
+  - name: add asdf to fish
+    lineinfile:
+      path: /home/kevin/.config/fish/config.fish
+      regexp: '^source ~/.asdf'
+      line: 'source ~/.asdf/asdf.fish'
+
+  - name: add asdf autocompletion for asdf
+    file:
+      path: /home/kevin/.config/fish/completions/asdf.fish
+      state: link
+      src: /home/kevin/.asdf/completions/asdf.fish
+
+  - name: add asdf plugins
+    command: 
+      cmd: "asdf plugin add {{ item.name }} {{ item.url }}"
+      creates: "/home/kevin/.asdf/plugins/{{ item.name}}"
+    loop: "{{ asdf_packages }}"
+
+  - name: install asdf packages
+    command: 
+      cmd: "asdf install {{ item.name }} {{ item.version }}"
+      creates: "/home/kevin/.asdf/installs/{{ item.name }}/{{ item.version }}"
+    loop: "{{ asdf_packages }}"
+
+  - name: set global asdf versions
+    command: 
+      cmd: "asdf global {{ item.name }} {{ item.version }}"
+    changed_when: 
+    loop: "{{ asdf_packages }}"
