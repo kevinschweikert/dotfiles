@@ -59,5 +59,5 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 
 -- maintenance
 keymap.set("n", "<leader>ps", "<cmd>PackerSync<cr>") -- updates plugins
-keymap.set("n", "<leader>ps", "<cmd>TSUpdate all<cr>") -- updates treesitter parsers
+keymap.set("n", "<leader>ts", "<cmd>TSUpdate all<cr>") -- updates treesitter parsers
 
