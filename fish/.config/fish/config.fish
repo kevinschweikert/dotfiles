@@ -1,4 +1,5 @@
 source ~/.asdf/asdf.fish
+source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
 set EDITOR "nvim"
 set TERM "xterm-256color"
@@ -30,5 +31,6 @@ alias fgrep='fgrep --color=auto'
 
 alias vim="nvim"
 
+source ~/.profile
 starship init fish | source
 
