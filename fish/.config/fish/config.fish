@@ -8,7 +8,7 @@ set STARSHIP_CONFIG "~/.config/starship/config.toml"
 # confirm before overwriting something
 alias cp="cp -i"
 alias mv='mv -i'
-alias rm='rm -I --preserve-root'
+alias rm='rm -i'
 alias ll="ls -la --color=auto"
 alias sudo="sudo -i"
 alias untar='tar -zxvf '
