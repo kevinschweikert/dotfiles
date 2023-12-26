@@ -1,0 +1,12 @@
+---
+- name: copy starship config
+  copy:
+    src: files/starship.toml
+    dest: ~/.config/starship.toml
+    mode: 0644
+
+- name: add starship to fish shell
+  lineinfile:
+    path: ~/.config/fish/config.fish
+    line: "starship init fish | source"
+    state: present

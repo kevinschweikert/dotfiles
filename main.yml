@@ -1,0 +1,20 @@
+- name: Set up macOS machine
+  connection: local
+  hosts: localhost
+  vars_files:
+    - homebrew.yml
+    - vault.yml
+
+  roles:
+    - geerlingguy.mac.homebrew
+
+  tasks:
+    - include_tasks: tasks/ssh.yml
+    - include_tasks: tasks/osx_defaults.yml
+    - include_tasks: tasks/fish.yml
+    - include_tasks: tasks/git.yml
+    - include_tasks: tasks/starship.yml
+    - include_tasks: tasks/kitty.yml
+    - include_tasks: tasks/asdf.yml
+    - include_tasks: tasks/fonts.yml
+    - include_tasks: tasks/zed.yml

@@ -1,0 +1,34 @@
+---
+- name: create config dir
+  file:
+    path: ~/.config/fish
+    state: directory
+    mode: 0755
+
+- name: copy fish config
+  copy:
+    src: files/fish/config.fish
+    dest: ~/.config/fish/config.fish
+    mode: 0644
+
+- name: add fish to shells
+  lineinfile:
+    path: /etc/shells
+    line: /opt/homebrew/opt/fish
+    state: present
+  become: true
+
+- name: register current ansible user id
+  set_fact:
+    current_user_id: "{{ ansible_user_id }}"
+
+- name: change default shell to fish
+  user:
+    name: "{{ current_user_id }}"
+    shell: /opt/homebrew//bin/fish
+  become: true
+
+- name: update completions
+  shell: "fish_update_completions"
+  args:
+    executable: '{{ ansible_user_shell }}'

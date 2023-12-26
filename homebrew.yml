@@ -1,0 +1,48 @@
+---
+homebrew_taps: []
+homebrew_upgrade_all_packages: true
+homebrew_use_brewfile: false
+homebrew_installed_packages:
+  - ansible
+  - asdf
+  - autoconf
+  - bitwarden-cli
+  - coreutils
+  - entr
+  - fish
+  - flyctl
+  - fop
+  - fwup
+  - git
+  - git-lfs
+  - jq
+  - libxslt
+  - neovim
+  - openssl@1.1
+  - openssl@3
+  - pkg-config
+  - podman
+  - podman-compose
+  - squashfs
+  - starship
+  - wxwidgets
+  - xz
+
+homebrew_cask_apps:
+  - arc
+  - beekeeper-studio
+  - bitwarden
+  - blender
+  - dash
+  - docker
+  - freecad
+  - kitty
+  - linearmouse
+  - microsoft-office
+  - nextcloud
+  - raycast
+  - shottr
+  - spotify
+  - stats
+  - transmission
+  - zed

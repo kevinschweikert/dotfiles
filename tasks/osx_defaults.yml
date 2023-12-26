@@ -1,0 +1,96 @@
+- name: set settings for finder
+  community.general.osx_defaults:
+    domain: com.apple.finder
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: FXEnableExtensionChangeWarning
+      value: false
+    - key: FXPreferredViewStyle
+      value: clmv
+    - key: AppleShowAllFiles
+    - key: AppleShowAllExtensions
+    - key: ShowStatusBar
+    - key: ShowPathbar
+    - key: ShowMountedServersOnDesktop
+    - key: FXDefaultSearchScope
+      value: SCcf
+
+- name: set ns global settings
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: NSDocumentSaveNewDocumentsToCloud
+      value: false
+    - key: NSNavPanelExpandedStateForSaveMode
+    - key: PMPrintingExpandedStateForPrint
+    - key: com.apple.mouse.tapBehavior
+      value: 1
+    - key: ApplePressAndHoldEnabled
+      value: false
+
+- name: screenshot settings
+  community.general.osx_defaults:
+    domain: com.apple.screencapture
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: disable-shadow
+      value: true
+    - key: location
+      value: $HOME/Downloads
+    - key: type
+      value: png
+
+- name: desktopservices settings
+  community.general.osx_defaults:
+    domain: com.apple.desktopservices
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: DSDontWriteNetworkStores
+    - key: DSDontWriteUSBStores
+
+- name: time machines
+  community.general.osx_defaults:
+    domain: com.apple.TimeMachine
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: DoNotOfferNewDisksForBackup
+      value: true
+
+- name: transmission app
+  community.general.osx_defaults:
+    domain: org.m0k.transmission
+    key: "{{ item.key }}"
+    value: "{{ item.value | default('true') }}"
+    state: present
+  loop:
+    - key: DownloadAsk
+      value: false
+    - key: DownloadFolder
+      value: $HOME/Downloads
+    - key: UseIncompleteDownloadFolder
+      value: true
+    - key: IncompleteDownloadFolder
+      value: $HOME/Downloads/Torrents
+    - key: WarningDonate
+      value: false
+    - key: WarningLegal
+      value: false
+    - key: WarningSharing
+      value: false
+    - key: RandomPort
+      value: true
+    - key: RandomPortEveryTime
+      value: true
+    - key: BlocklistAutoUpdate
+      value: true

@@ -1,0 +1,26 @@
+[includeIf "gitdir:~/projects/imen/"]
+  path = .gitconfig-imen
+[includeIf "gitdir:~/projects/personal/"]
+  path = .gitconfig-personal
+
+[alias]
+	s = status
+	ci = commit
+	br = branch
+	sw = switch
+	up = push
+[push]
+	autoSetupRemote = true
+[core]
+	excludesfile = /Users/kevinschweikert/.gitignore
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[rerere]
+	enabled = true
+[pull]
+	ff = only

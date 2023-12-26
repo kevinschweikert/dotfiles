@@ -1,0 +1,20 @@
+Host *
+    UseKeychain yes
+    AddKeysToAgent yes
+
+Host gitlab.im-en.com
+    HostName gitlab.im-en.com
+    User kschweikert
+    Port {{ secrets.imen_default_ssh_port}}
+    IdentityFile ~/.ssh/id_ed25519_imen
+
+Host gitlab-runner.im-en.com
+    HostName gitlab-runner.im-en.com
+    User imen
+    Port {{ secrets.imen_default_ssh_port}}
+    IdentityFile ~/.ssh/id_ed25519_imen
+
+Host github.com
+    HostName github.com
+    Port 22
+    IdentityFile ~/.ssh/id_ed25519

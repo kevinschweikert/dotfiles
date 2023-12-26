@@ -1,0 +1,73 @@
+---
+- name: create ssh dir
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: 0700
+
+- name: check if BW_SESSION is set
+  fail:
+    msg: "BW_SESSION is not set"
+  when: lookup('env', 'BW_SESSION') == ""
+
+- name: copy ssh keys from bitwarden
+  shell: "bw get attachment {{ item.file }} --itemid {{ item.id }} --output {{ ansible_user_dir }}/.ssh/{{ item.file}} --session {{ lookup('env', 'BW_SESSION') }}"
+  args:
+    executable: "{{ ansible_user_shell }}"
+  loop:
+    - file: id_ed25519_imen
+      id: b3aa93a8-07ee-4ca2-9019-b097015cbe7a
+    - file: id_ed25519_imen.pub
+      id: b3aa93a8-07ee-4ca2-9019-b097015cbe7a
+    - file: id_ed25519
+      id: a8db9390-47f8-4dd5-acd7-b097015cbe7a
+    - file: id_ed25519.pub
+      id: a8db9390-47f8-4dd5-acd7-b097015cbe7a
+    - file: id_rsa
+      id: 462087cc-361c-42cd-8355-b097015cbe7a
+    - file: id_rsa.pub
+      id: 462087cc-361c-42cd-8355-b097015cbe7a
+    - file: id_rsa_imen
+      id: 3ed07bcb-5c33-4e0e-9468-b097015cbe7a
+    - file: id_rsa_imen.pub
+      id: 3ed07bcb-5c33-4e0e-9468-b097015cbe7a
+  loop_control:
+    label: "{{ item.file }}"
+  register: bw_ssh_keys
+  changed_when: "'Saved' not in bw_ssh_keys.stdout"
+
+- name: set ssh key permissions
+  file:
+    path: "{{ ansible_user_dir }}/.ssh/{{ item.file }}"
+    mode: 0600
+  loop:
+    - file: id_ed25519_imen
+    - file: id_ed25519
+
+- name: set ssh public key permissions
+  file:
+    path: "{{ ansible_user_dir }}/.ssh/{{ item.file }}"
+    mode: 0644
+  loop:
+    - file: id_ed25519_imen.pub
+    - file: id_ed25519.pub
+
+- name: add ssh keys to apple keychain
+  shell: "ssh-add --apple-use-keychain {{ ansible_user_dir }}/.ssh/{{ item.file }}"
+  args:
+    executable: "{{ ansible_user_shell }}"
+  loop:
+    - file: id_ed25519_imen
+    - file: id_ed25519
+
+- name: create ssh config file
+  file:
+    path: ~/.ssh/config
+    state: touch
+    mode: 0644
+
+- name: copy ssh config template
+  template:
+    src: templates/ssh/config.j2
+    dest: ~/.ssh/config
+    mode: 0644

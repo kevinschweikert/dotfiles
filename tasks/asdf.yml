@@ -1,0 +1,31 @@
+- name: register tools and versions
+  set_fact:
+    tools:
+      - name: erlang
+        version: 26.2.1
+      - name: elixir
+        version: 1.16.0-otp-26
+      - name: nodejs
+        version: 18.12.1
+      - name: rust
+        version: 1.74.1
+
+- name: add tool plugins
+  shell: "asdf plugin add {{ item.name }}"
+  loop: "{{ tools }}"
+  register: asdf_plugin
+  changed_when: "'already added' not in asdf_plugin.stdout"
+
+- name: install tools
+  shell: "asdf install {{ item.name }} {{ item.version }}"
+  args:
+    executable: "{{ ansible_user_shell }}"
+  loop: "{{ tools }}"
+  register: asdf_install
+  changed_when: "'already installed' not in asdf_install.stdout"
+
+- name: set global versions
+  shell: "asdf global {{ item.name }} {{ item.version }}"
+  args:
+    executable: "{{ ansible_user_shell }}"
+  loop: "{{ tools }}"

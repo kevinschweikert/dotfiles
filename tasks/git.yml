@@ -1,0 +1,21 @@
+---
+- name: copy git config
+  copy:
+    src: files/{{ item}}
+    dest: ~/.{{ item}}
+    mode: 0644
+  loop:
+    - gitconfig
+    - gitconfig-imen
+    - gitconfig-personal
+
+- name: copy gitignore
+  copy:
+    src: files/gitignore
+    dest: ~/.gitignore
+    mode: 0644
+
+- name: add lfs plugin to git
+  shell: "git lfs install"
+  args:
+    executable: "{{ ansible_user_shell }}"

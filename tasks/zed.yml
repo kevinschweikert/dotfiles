@@ -1,0 +1,5 @@
+- name: copy zed config
+  copy:
+    src: files/zed/settings.json
+    dest: ~/.config/zed/settings.json
+    mode: 0644

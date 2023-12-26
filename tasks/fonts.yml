@@ -1,0 +1,47 @@
+---
+- name: check if font is installed
+  stat:
+    path: "~/Library/Fonts/GeistMonoNerdFontMono-Regular.otf"
+  register: font
+
+- block:
+  - name: dowload font
+    get_url:
+      url: "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/GeistMono.zip"
+      dest: "~/Downloads/GeistMono.zip"
+
+  - name: create tmp dir
+    file:
+      path: "~/Downloads/GeistMono"
+      state: directory
+      mode: 0755
+
+  - name: unzip font
+    unarchive:
+      src: "~/Downloads/GeistMono.zip"
+      dest: "~/Downloads/GeistMono"
+      remote_src: yes
+
+  - name: find all mono fonts
+    find:
+      paths: "~/Downloads/GeistMono"
+      patterns: "GeistMonoNerdFontMono-*.otf"
+    register: mono_fonts
+
+  - name: copy font
+    copy:
+      src: "{{ item }}"
+      dest: "~/Library/Fonts/"
+      mode: 0644
+    with_fileglob: "~/Downloads/GeistMono/GeistMonoNerdFontMono-*.otf"
+
+  - name: remove tmp dir and zip files
+    file:
+      path: "{{ item }}"
+      state: absent
+      mode: 0755
+    loop:
+      - "~/Downloads/GeistMono.zip"
+      - "~/Downloads/GeistMono"
+
+  when: font.stat.exists == false

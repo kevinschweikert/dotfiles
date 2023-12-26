@@ -1,0 +1,18 @@
+---
+- name: copy kitty config
+  copy:
+    src: files/kitty/kitty.conf
+    dest: ~/.config/kitty/kitty.conf
+    mode: 0644
+
+- name: create kitty themes dir
+  file:
+    path: ~/.config/kitty/themes
+    state: directory
+    mode: 0755
+
+- name: copy kitty theme
+  copy:
+    src: files/kitty/themes/OneDark.conf
+    dest: ~/.config/kitty/themes/OneDark.conf
+    mode: 0644
