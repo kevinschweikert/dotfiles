@@ -11,6 +11,12 @@
     dest: ~/.config/fish/config.fish
     mode: 0644
 
+- name: copy fish functions
+  copy:
+    src: files/fish/functions/
+    dest: ~/.config/fish/functions/
+    mode: 0644
+
 - name: add fish to shells
   lineinfile:
     path: /etc/shells
