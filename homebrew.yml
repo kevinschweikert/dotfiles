@@ -20,6 +20,7 @@ homebrew_installed_packages:
   - neovim
   - openssl@1.1
   - openssl@3
+  - opentofu
   - pkg-config
   - podman
   - podman-compose
@@ -27,6 +28,7 @@ homebrew_installed_packages:
   - starship
   - wxwidgets
   - xz
+  - z
 
 homebrew_cask_apps:
   - arc

@@ -1,9 +1,11 @@
 ---
-- name: copy kitty config
-  copy:
-    src: files/kitty/kitty.conf
+- name: link kitty config
+  file:
+    src: "{{ playbook_dir }}/files/kitty/kitty.conf"
     dest: ~/.config/kitty/kitty.conf
     mode: 0644
+    state: link
+    force: true
 
 - name: create kitty themes dir
   file:

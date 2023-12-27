@@ -5,13 +5,25 @@
     state: directory
     mode: 0700
 
+- name: create config dir
+  file:
+    path: ~/.ssh/config.d
+    state: directory
+    mode: 0700
+
+- name: get keys in ssh directory
+  find:
+    paths: ~/.ssh
+    patterns: id_*
+  register: ssh_keys
+
 - name: check if BW_SESSION is set
   fail:
     msg: "BW_SESSION is not set"
-  when: lookup('env', 'BW_SESSION') == ""
+  when: lookup('env', 'BW_SESSION') == "" and ssh_keys.files == []
 
 - name: copy ssh keys from bitwarden
-  shell: "bw get attachment {{ item.file }} --itemid {{ item.id }} --output {{ ansible_user_dir }}/.ssh/{{ item.file}} --session {{ lookup('env', 'BW_SESSION') }}"
+  shell: "bw-personal get attachment {{ item.file }} --itemid {{ item.id }} --output {{ ansible_user_dir }}/.ssh/{{ item.file}} --session {{ lookup('env', 'BW_SESSION') }}"
   args:
     executable: "{{ ansible_user_shell }}"
   loop:
@@ -34,6 +46,7 @@
   loop_control:
     label: "{{ item.file }}"
   register: bw_ssh_keys
+  when: "item.file not in ssh_keys.files | map(attribute='path') | map('basename') | list"
   changed_when: "'Saved' not in bw_ssh_keys.stdout"
 
 - name: set ssh key permissions
@@ -60,14 +73,21 @@
     - file: id_ed25519_imen
     - file: id_ed25519
 
-- name: create ssh config file
+- name: link ssh config
   file:
-    path: ~/.ssh/config
-    state: touch
+    src: "{{ playbook_dir }}/files/ssh/config"
+    dest: ~/.ssh/config
+    state: link
+    force: true
     mode: 0644
 
-- name: copy ssh config template
+- name: create imen config file
+  file:
+    path: ~/.ssh/config.d/imen
+    state: touch
+
+- name: copy imen config template
   template:
-    src: templates/ssh/config.j2
-    dest: ~/.ssh/config
+    src: files/ssh/config.d/imen.j2
+    dest: ~/.ssh/config.d/imen
     mode: 0644

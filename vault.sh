@@ -1,3 +1,2 @@
-#!/bin/sh
-set -e
-bw get password "Ansible Vault Mac Setup Bootstrap"
+#!/usr/bin/env fish
+bw-personal get password "Ansible Vault Mac Setup Bootstrap"

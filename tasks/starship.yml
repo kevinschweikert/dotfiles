@@ -1,9 +1,11 @@
 ---
-- name: copy starship config
-  copy:
-    src: files/starship.toml
+- name: link starship config
+  file:
+    src: "{{ playbook_dir }}/files/starship.toml"
     dest: ~/.config/starship.toml
     mode: 0644
+    state: link
+    force: true
 
 - name: add starship to fish shell
   lineinfile:

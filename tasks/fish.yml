@@ -5,11 +5,13 @@
     state: directory
     mode: 0755
 
-- name: copy fish config
-  copy:
-    src: files/fish/config.fish
+- name: link fish config
+  file:
+    src: "{{ playbook_dir }}/files/fish/config.fish"
     dest: ~/.config/fish/config.fish
     mode: 0644
+    state: link
+    force: true
 
 - name: copy fish functions
   copy:

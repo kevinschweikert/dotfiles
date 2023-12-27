@@ -1,19 +1,23 @@
 ---
-- name: copy git config
-  copy:
-    src: files/{{ item}}
+- name: link git config
+  file:
+    src: "{{ playbook_dir }}/files/{{ item }}"
     dest: ~/.{{ item}}
     mode: 0644
+    state: link
+    force: true
   loop:
     - gitconfig
     - gitconfig-imen
     - gitconfig-personal
 
-- name: copy gitignore
-  copy:
-    src: files/gitignore
+- name: link gitignore
+  file:
+    src: "{{ playbook_dir }}/files/gitignore"
     dest: ~/.gitignore
     mode: 0644
+    state: link
+    force: true
 
 - name: add lfs plugin to git
   shell: "git lfs install"
