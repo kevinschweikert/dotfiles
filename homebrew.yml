@@ -31,6 +31,9 @@ homebrew_installed_packages:
   - z
 
 homebrew_cask_apps:
+  - affinity-photo
+  - affinity-desinger
+  - affinity-publisher
   - arc
   - beekeeper-studio
   - bitwarden
