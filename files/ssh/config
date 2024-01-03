@@ -13,14 +13,12 @@ Host gitlab.im-en.com
 Host gitlab-runner.im-en.com
     Hostname gitlab-runner.im-en.com
     User imen
-    Port 22
     IdentityFile ~/.ssh/id_ed25519_imen
     IdentitiesOnly yes
 
-Host corpcast-runner
+Host corpcast-runner.im-en.com
     Hostname 172.16.1.61
     User imen
-    Port 22
     IdentityFile ~/.ssh/id_ed25519_imen
     IdentitiesOnly yes
 
