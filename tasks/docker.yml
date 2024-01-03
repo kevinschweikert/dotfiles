@@ -1,0 +1,15 @@
+---
+
+- name: create docker cli plugin dir
+  file:
+    path: ~/.docker/cli-plugins
+    state: directory
+    mode: 0755
+
+- name: link docker-buildx
+  file:
+    src: /opt/homebrew/opt/docker-buildx/bin/docker-buildx
+    dest: ~/.docker/cli-plugins/docker-buildx
+    mode: 0755
+    state: link
+    force: true

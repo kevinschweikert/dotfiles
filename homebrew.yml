@@ -8,7 +8,9 @@ homebrew_installed_packages:
   - autoconf
   - bitwarden-cli
   - coreutils
+  - docker-buildx
   - entr
+  - ffmpeg
   - fish
   - flyctl
   - fop
@@ -17,13 +19,16 @@ homebrew_installed_packages:
   - git-lfs
   - jq
   - libxslt
+  - mariadb-connector-c
   - neovim
   - openssl@1.1
   - openssl@3
   - opentofu
+  - p7zip
   - pkg-config
   - podman
   - podman-compose
+  - ripgrep
   - squashfs
   - starship
   - wxwidgets
@@ -32,22 +37,24 @@ homebrew_installed_packages:
 
 homebrew_cask_apps:
   - affinity-photo
-  - affinity-desinger
+  - affinity-designer
   - affinity-publisher
   - arc
   - beekeeper-studio
   - bitwarden
   - blender
+  - chromium
   - dash
   - docker
   - freecad
   - kitty
   - linearmouse
-  - microsoft-office
+  - microsoft-office-businesspro
   - nextcloud
   - raycast
   - shottr
   - spotify
   - stats
   - transmission
+  - visual-studio-code
   - zed
