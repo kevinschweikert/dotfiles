@@ -15,6 +15,7 @@ homebrew_installed_packages:
   - flyctl
   - fop
   - fwup
+  - fzf
   - git
   - git-lfs
   - jq
@@ -31,9 +32,11 @@ homebrew_installed_packages:
   - ripgrep
   - squashfs
   - starship
+  - tailspin
   - wxwidgets
+  - xh
   - xz
-  - z
+  - zoxide
 
 homebrew_cask_apps:
   - affinity-photo

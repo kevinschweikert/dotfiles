@@ -34,3 +34,4 @@ alias fgrep='fgrep --color=auto'
 fish_add_path /opt/homebrew/bin
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 starship init fish | source
+zoxide init fish | source

@@ -14,6 +14,12 @@
     "shell": {
       "program": "fish"
     },
+    "detect_venv": {
+      "on": {
+        // Can also be 'csh', 'fish', and `nushell`
+        "activate_script": "fish"
+      }
+    },
     "font_family": "GeistMono Nerd Font Mono"
   }
 }

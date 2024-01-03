@@ -6,7 +6,9 @@
     - vault.yml
 
   roles:
-    - geerlingguy.mac.homebrew
+    - role: geerlingguy.mac.homebrew
+      tags:
+        - brew
 
   tasks:
     - include_tasks: tasks/osx_defaults.yml
