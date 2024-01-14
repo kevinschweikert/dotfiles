@@ -1,0 +1,10 @@
+---
+- name: check for existing neovim config
+  ansible.builtin.set_fact:
+    config_exists: "{{ '~/.config/nvim/init.lua' | expanduser is not ansible.builtin.exists }}"
+
+- name: install lazyvim
+  ansible.builtin.git:
+    repo: https://github.com/LazyVim/starter
+    dest: ~/.config/nvim
+  when: config_exists
