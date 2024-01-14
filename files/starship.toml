@@ -16,3 +16,4 @@ format = "[@$hostname]($style) "
 
 [status]
 disabled = false
+format = "[$status]($style)"
