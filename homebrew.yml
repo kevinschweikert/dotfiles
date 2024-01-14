@@ -6,10 +6,12 @@ homebrew_installed_packages:
   - ansible
   - asdf
   - autoconf
+  - bat
   - bitwarden-cli
   - coreutils
   - docker-buildx
   - entr
+  - eza
   - fd
   - ffmpeg
   - fish

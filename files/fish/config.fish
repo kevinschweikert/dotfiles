@@ -18,7 +18,8 @@ set -x CFLAGS "-O2 -g -march=native"
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
-alias ll="ls -la --color=auto"
+alias ls='eza'
+alias ll="eza -la --color=auto"
 alias sudo="sudo -i"
 alias untar='tar -zxvf '
 alias ping='ping -c 5'
