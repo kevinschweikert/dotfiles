@@ -1,0 +1,30 @@
+---
+- name: create config directory
+  ansible.builtin.file:
+    path: ~/.config/tmux
+    state: directory
+    mode: 0744
+
+- name: create tmux config
+  ansible.builtin.file:
+    src: "{{ playbook_dir }}/files/tmux/{{ item }}"
+    dest: ~/.config/tmux/{{ item }}
+    mode: 0644
+    state: link
+    force: true
+  loop:
+    - tmux.conf
+    - tmux.keybindings.conf
+
+- name: create tpm directory
+  ansible.builtin.file:
+    path: ~/.tmux/plugins/tpm
+    state: directory
+    recurse: true
+    mode: 0744
+
+- name: clone tpm repo
+  ansible.builtin.git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+    force: true
