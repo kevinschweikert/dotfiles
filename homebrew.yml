@@ -28,6 +28,7 @@ homebrew_installed_packages:
   - openssl@3
   - opentofu
   - p7zip
+  - pfetch
   - pkg-config
   - podman
   - podman-compose

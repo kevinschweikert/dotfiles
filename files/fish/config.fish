@@ -2,8 +2,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set EDITOR "nvim"
-set TERM "xterm-256color"
+function fish_greeting
+    pfetch
+end
+
+set EDITOR nvim
+set TERM xterm-256color
 
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 set -x KERL_CONFIGURE_OPTIONS "--disable-debug --without-javac --with-ssl=$(brew --prefix openssl@3)"
