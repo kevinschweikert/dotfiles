@@ -15,6 +15,9 @@
 
 - name: copy kitty theme
   copy:
-    src: files/kitty/themes/OneDark.conf
-    dest: ~/.config/kitty/themes/OneDark.conf
+    src: "files/kitty/themes/{{ item }}"
+    dest: "~/.config/kitty/themes/{{ item }}"
     mode: 0644
+  loop:
+    - OneDark.conf
+    - tokyonight.conf
