@@ -58,6 +58,7 @@ homebrew_cask_apps:
   - linearmouse
   - microsoft-office-businesspro
   - nextcloud
+  - obsidian
   - raycast
   - shottr
   - spotify
