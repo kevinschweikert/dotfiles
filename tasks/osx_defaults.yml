@@ -25,196 +25,235 @@
       value: clmv
       type: string
       domain: com.apple.finder
+      description: Sets the preferred view style in Finder (e.g., clmv for column view)
 
     - key: AppleShowAllFiles
       type: bool
       value: true
       domain: com.apple.finder
+      description: Show hidden files in Finder
 
     - key: AppleShowAllExtensions
       type: bool
       value: true
       domain: com.apple.finder
+      description: Show all file extensions in Finder
 
     - key: ShowStatusBar
       type: bool
       value: true
       domain: com.apple.finder
+      description: Show the status bar in Finder windows
 
     - key: ShowPathbar
       type: bool
       value: true
       domain: com.apple.finder
+      description: Show the path bar in Finder windows
 
     - key: ShowMountedServersOnDesktop
       type: bool
       value: true
       domain: com.apple.finder
+      description: Show mounted servers on the desktop
 
     - key: FXDefaultSearchScope
       value: SCcf
       type: string
       domain: com.apple.finder
+      description: Set the default scope for Finder search
 
     - key: _FXShowPosixPathInTitle
       type: bool
       value: true
       domain: com.apple.finder
+      description: Display the POSIX path in the window title of Finder
 
     - key: AppleKeyboardUIMode
       value: 3
       type: int
       domain: NSGlobalDomain
+      description: Set the keyboard UI mode, where 3 typically enables full keyboard access
 
     - key: NSDocumentSaveNewDocumentsToCloud
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Do not save new documents to iCloud by default
 
     - key: NSNavPanelExpandedStateForSaveMode
       value: true
       type: bool
       domain: NSGlobalDomain
+      description: Expand the save panel by default
 
     - key: NSNavPanelExpandedStateForSaveMode2
       value: true
       type: bool
       domain: NSGlobalDomain
+      description: Ensure the expanded state of the save panel is consistent
 
     - key: PMPrintingExpandedStateForPrint
       value: true
       type: bool
       domain: NSGlobalDomain
+      description: Expand the print dialog by default
 
     - key: com.apple.mouse.tapBehavior
       value: 1
       type: int
       domain: NSGlobalDomain
+      description: Set the tap behavior of the Apple mouse
 
     - key: NSDocumentSaveNewDocumentsToCloud
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable saving new documents to iCloud by default
 
     - key: ApplePressAndHoldEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable the press-and-hold for keys in favor of key repeat
 
     - key: NSAutomaticCapitalizationEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable automatic capitalization
 
     - key: NSAutomaticDashSubstitutionEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable automatic dash substitution
 
     - key: NSAutomaticPeriodSubstitutionEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable automatic period substitution
 
     - key: NSAutomaticQuoteSubstitutionEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable automatic quote substitution
 
     - key: NSAutomaticSpellingCorrectionEnabled
       value: false
       type: bool
       domain: NSGlobalDomain
+      description: Disable automatic spelling correction
 
     - key: disable-shadow
       value: true
       type: bool
       domain: com.apple.screencapture
+      description: Disable shadow in screenshots
 
     - key: location
       value: $HOME/Downloads
       type: string
       domain: com.apple.screencapture
+      description: Set the default location for screenshots
 
     - key: type
       value: png
       type: string
       domain: com.apple.screencapture
+      description: Set the default file type for screenshots
 
     - key: LSQuarantine
       value: false
       type: bool
       domain: com.apple.LaunchServices
+      description: Disable the quarantine warning on downloaded applications
 
     - key: NSQuitAlwaysKeepsWindows
       value: false
       type: bool
       domain: com.apple.systempreferences
+      description: Do not remember windows on quit
 
     - key: DSDontWriteNetworkStores
       value: true
       type: bool
       domain: com.apple.desktopservices
+      description: Prevent the creation of .DS_Store files on network volumes
 
     - key: DSDontWriteUSBStores
       value: true
       type: bool
       domain: com.apple.desktopservices
+      description: Prevent the creation of .DS_Store files on USB volumes
 
     - key: DoNotOfferNewDisksForBackup
-      type: bool
       value: true
+      type: bool
       domain: com.apple.TimeMachine
+      description: Do not prompt to use new disks for Time Machine backup
 
     - key: DownloadAsk
       value: false
       type: bool
       domain: org.m0k.transmission
+      description: Do not ask for download location in Transmission
 
     - key: DownloadFolder
       value: $HOME/Downloads
       type: string
       domain: org.m0k.transmission
+      description: Set default download folder in Transmission
 
     - key: UseIncompleteDownloadFolder
       value: true
       type: bool
       domain: org.m0k.transmission
+      description: Use a folder for incomplete downloads in Transmission
 
     - key: IncompleteDownloadFolder
       value: $HOME/Downloads/Torrents
       type: string
       domain: org.m0k.transmission
+      description: Set the folder for incomplete downloads in Transmission
 
     - key: WarningDonate
       value: false
       type: bool
       domain: org.m0k.transmission
+      description: Disable donation warnings in Transmission
 
     - key: WarningLegal
       value: false
       type: bool
       domain: org.m0k.transmission
+      description: Disable legal warnings in Transmission
 
     - key: WarningSharing
       value: false
       type: bool
       domain: org.m0k.transmission
+      description: Disable sharing warnings in Transmission
 
     - key: RandomPort
       value: true
       type: bool
       domain: org.m0k.transmission
+      description: Enable random port selection on startup in Transmission
 
     - key: RandomPortEveryTime
       value: true
       type: bool
       domain: org.m0k.transmission
+      description: Use a different random port every time Transmission starts
 
     - key: BlocklistAutoUpdate
       value: true
       type: bool
       domain: org.m0k.transmission
+      description: Enable automatic updating of the blocklist in Transmission
 
 - name: settings with sudo
   community.general.osx_defaults:
@@ -223,9 +262,12 @@
     value: "{{ item.value }}"
     state: present
     type: "{{ item.type }}"
+  loop_control:
+    label: "{{ item.description | default(item.key) }}"
   loop:
     - key: AdminHostInfo
       value: HostName
       type: string
       domain: /Library/Preferences/com.apple.loginwindow
+      description: Set the information displayed at the login window to show the system's host name when clicking on clock
   become: true
