@@ -1,96 +1,231 @@
+- name: quit settings
+  shell: osascript -e 'tell application "System Preferences" to quit'
+
+- name: disable boot sound effects
+  shell: nvram SystemAudioVolume=" "
+  become: true
+
 - name: set settings for finder
   community.general.osx_defaults:
-    domain: com.apple.finder
+    domain: "{{ item.domain }}"
     key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
+    value: "{{ item.value }}"
     state: present
+    type: "{{ item.type }}"
+  loop_control:
+    label: "{{ item.description | default(item.key) }}"
   loop:
     - key: FXEnableExtensionChangeWarning
       value: false
+      type: bool
+      domain: com.apple.finder
+      description: Disable the warning when changing a file extension
+
     - key: FXPreferredViewStyle
       value: clmv
+      type: string
+      domain: com.apple.finder
+
     - key: AppleShowAllFiles
+      type: bool
+      value: true
+      domain: com.apple.finder
+
     - key: AppleShowAllExtensions
+      type: bool
+      value: true
+      domain: com.apple.finder
+
     - key: ShowStatusBar
+      type: bool
+      value: true
+      domain: com.apple.finder
+
     - key: ShowPathbar
+      type: bool
+      value: true
+      domain: com.apple.finder
+
     - key: ShowMountedServersOnDesktop
+      type: bool
+      value: true
+      domain: com.apple.finder
+
     - key: FXDefaultSearchScope
       value: SCcf
+      type: string
+      domain: com.apple.finder
 
-- name: set ns global settings
-  community.general.osx_defaults:
-    domain: NSGlobalDomain
-    key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
-    state: present
-  loop:
+    - key: _FXShowPosixPathInTitle
+      type: bool
+      value: true
+      domain: com.apple.finder
+
+    - key: AppleKeyboardUIMode
+      value: 3
+      type: int
+      domain: NSGlobalDomain
+
     - key: NSDocumentSaveNewDocumentsToCloud
       value: false
+      type: bool
+      domain: NSGlobalDomain
+
     - key: NSNavPanelExpandedStateForSaveMode
+      value: true
+      type: bool
+      domain: NSGlobalDomain
+
+    - key: NSNavPanelExpandedStateForSaveMode2
+      value: true
+      type: bool
+      domain: NSGlobalDomain
+
     - key: PMPrintingExpandedStateForPrint
+      value: true
+      type: bool
+      domain: NSGlobalDomain
+
     - key: com.apple.mouse.tapBehavior
       value: 1
+      type: int
+      domain: NSGlobalDomain
+
+    - key: NSDocumentSaveNewDocumentsToCloud
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
     - key: ApplePressAndHoldEnabled
       value: false
+      type: bool
+      domain: NSGlobalDomain
 
-- name: screenshot settings
-  community.general.osx_defaults:
-    domain: com.apple.screencapture
-    key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
-    state: present
-  loop:
+    - key: NSAutomaticCapitalizationEnabled
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
+    - key: NSAutomaticDashSubstitutionEnabled
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
+    - key: NSAutomaticPeriodSubstitutionEnabled
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
+    - key: NSAutomaticQuoteSubstitutionEnabled
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
+    - key: NSAutomaticSpellingCorrectionEnabled
+      value: false
+      type: bool
+      domain: NSGlobalDomain
+
     - key: disable-shadow
       value: true
+      type: bool
+      domain: com.apple.screencapture
+
     - key: location
       value: $HOME/Downloads
+      type: string
+      domain: com.apple.screencapture
+
     - key: type
       value: png
+      type: string
+      domain: com.apple.screencapture
 
-- name: desktopservices settings
-  community.general.osx_defaults:
-    domain: com.apple.desktopservices
-    key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
-    state: present
-  loop:
+    - key: LSQuarantine
+      value: false
+      type: bool
+      domain: com.apple.LaunchServices
+
+    - key: NSQuitAlwaysKeepsWindows
+      value: false
+      type: bool
+      domain: com.apple.systempreferences
+
     - key: DSDontWriteNetworkStores
-    - key: DSDontWriteUSBStores
-
-- name: time machines
-  community.general.osx_defaults:
-    domain: com.apple.TimeMachine
-    key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
-    state: present
-  loop:
-    - key: DoNotOfferNewDisksForBackup
       value: true
+      type: bool
+      domain: com.apple.desktopservices
 
-- name: transmission app
-  community.general.osx_defaults:
-    domain: org.m0k.transmission
-    key: "{{ item.key }}"
-    value: "{{ item.value | default('true') }}"
-    state: present
-  loop:
+    - key: DSDontWriteUSBStores
+      value: true
+      type: bool
+      domain: com.apple.desktopservices
+
+    - key: DoNotOfferNewDisksForBackup
+      type: bool
+      value: true
+      domain: com.apple.TimeMachine
+
     - key: DownloadAsk
       value: false
+      type: bool
+      domain: org.m0k.transmission
+
     - key: DownloadFolder
       value: $HOME/Downloads
+      type: string
+      domain: org.m0k.transmission
+
     - key: UseIncompleteDownloadFolder
       value: true
+      type: bool
+      domain: org.m0k.transmission
+
     - key: IncompleteDownloadFolder
       value: $HOME/Downloads/Torrents
+      type: string
+      domain: org.m0k.transmission
+
     - key: WarningDonate
       value: false
+      type: bool
+      domain: org.m0k.transmission
+
     - key: WarningLegal
       value: false
+      type: bool
+      domain: org.m0k.transmission
+
     - key: WarningSharing
       value: false
+      type: bool
+      domain: org.m0k.transmission
+
     - key: RandomPort
       value: true
+      type: bool
+      domain: org.m0k.transmission
+
     - key: RandomPortEveryTime
       value: true
+      type: bool
+      domain: org.m0k.transmission
+
     - key: BlocklistAutoUpdate
       value: true
+      type: bool
+      domain: org.m0k.transmission
+
+- name: settings with sudo
+  community.general.osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+    type: "{{ item.type }}"
+  loop:
+    - key: AdminHostInfo
+      value: HostName
+      type: string
+      domain: /Library/Preferences/com.apple.loginwindow
+  become: true
