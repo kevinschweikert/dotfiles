@@ -21,6 +21,7 @@ homebrew_installed_packages:
   - fzf
   - git
   - git-lfs
+  - imagemagick
   - jq
   - lazygit
   - libxslt
@@ -53,6 +54,7 @@ homebrew_cask_apps:
   - bitwarden
   - blender
   - chromium
+  - citrix-workspace
   - dash
   - docker
   - freecad
