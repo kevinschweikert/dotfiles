@@ -1,6 +1,7 @@
 Include config.d/*
 
 Host *
+    IgnoreUnknown UseKeyChain
     UseKeychain yes
     AddKeysToAgent yes
 
@@ -23,6 +24,7 @@ Host corpcast-runner.im-en.com
     IdentitiesOnly yes
 
 Host github.com
-    HostName github.com
-    Port 22
+    HostName ssh.github.com
+    Port 443
     IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
