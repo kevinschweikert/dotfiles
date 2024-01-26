@@ -61,13 +61,109 @@
       value: SCcf
       type: string
       domain: com.apple.finder
-      description: Set the default scope for Finder search
+      description: Set the default scope for Finder search to the current directory
 
     - key: _FXShowPosixPathInTitle
       type: bool
       value: true
       domain: com.apple.finder
       description: Display the POSIX path in the window title of Finder
+
+    - key: QuitMenuItem
+      value: true
+      type: bool
+      domain: com.apple.finder
+      description: allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
+
+    - key: static-only
+      value: true
+      type: bool
+      domain: com.apple.dock
+      description: Show only open applications in the Dock
+
+    - key: autohide
+      value: true
+      type: bool
+      domain: com.apple.dock
+      description: Automatically hide and show the Dock
+
+    - key: showhidden
+      value: true
+      type: bool
+      domain: com.apple.dock
+      description: Make Dock icons of hidden applications translucent
+
+    - key: show-recents
+      value: false
+      type: bool
+      domain: com.apple.dock
+      description: Don’t show recent applications in Dock
+
+    - key: OpenMainWindow
+      value: true
+      type: bool
+      domain: com.apple.ActivityMonitor
+      description: Show the main window when launching Activity Monitor
+
+    - key: IconType
+      value: 5
+      type: int
+      domain: com.apple.ActivityMonitor
+      description: Visualize CPU usage in the Activity Monitor Dock icon
+
+    - key: ShowCategory
+      value: 0
+      type: int
+      domain: com.apple.ActivityMonitor
+      description: Show all processes in Activity Monitor
+
+    - key: SortColumn
+      value: "CPUUsage"
+      type: string
+      domain: com.apple.ActivityMonitor
+      description: Sort Activity Monitor results by CPU usage
+
+    - key: SortDirection
+      value: 0
+      type: int
+      domain: com.apple.ActivityMonitor
+      description: Set sorting direction in Activity Monitor (0 for ascending)
+
+    - key: AutomaticCheckEnabled
+      value: true
+      type: bool
+      domain: com.apple.SoftwareUpdate
+      description: Enable the automatic update check
+
+    - key: ScheduleFrequency
+      value: 1
+      type: int
+      domain: com.apple.SoftwareUpdate
+      description: Check for software updates daily, not just once per week
+
+    - key: AutomaticDownload
+      value: 1
+      type: int
+      domain: com.apple.SoftwareUpdate
+      description: Download newly available updates in the background
+
+    - key: CriticalUpdateInstall
+      value: 1
+      type: int
+      domain: com.apple.SoftwareUpdate
+      description: Install System data files and security updates
+
+    - key: DisableAllAnimations
+      value: true
+      type: bool
+      domain: com.apple.finder
+      description: disable window animations and Get Info animations
+
+    - key: BrowseAllInterfaces
+      value: true
+      type: bool
+      domain: com.apple.NetworkBrowser
+      description: Enable AirDrop over Ethernet and on unsupported Macs running Lion
 
     - key: AppleKeyboardUIMode
       value: 3
@@ -93,6 +189,24 @@
       domain: NSGlobalDomain
       description: Ensure the expanded state of the save panel is consistent
 
+    - key: KeyRepeat
+      value: 1
+      type: int
+      domain: NSGlobalDomain
+      description: Set a blazingly fast keyboard repeat rate
+
+    - key: AppleFontSmoothing
+      value: 1
+      type: int
+      domain: NSGlobalDomain
+      description: Set a blazingly fast keyboard repeat rate
+
+    - key: InitialKeyRepeat
+      value: 16
+      type: int
+      domain: NSGlobalDomain
+      description: Set a blazingly fast keyboard repeat rate
+
     - key: PMPrintingExpandedStateForPrint
       value: true
       type: bool
@@ -104,6 +218,19 @@
       type: int
       domain: NSGlobalDomain
       description: Set the tap behavior of the Apple mouse
+
+    - key: com.apple.mouse.tapBehavior
+      value: 1
+      type: int
+      domain: NSGlobalDomain
+      host: currentHost
+      description: Set the tap behavior of the Apple mouse
+
+    - key: Apple Bitpool Min (editable)
+      value: 40
+      type: int
+      domain: com.apple.BluetoothAudioAgent
+      description: Increase sound quality for Bluetooth headphones/headsets
 
     - key: NSDocumentSaveNewDocumentsToCloud
       value: false
@@ -270,4 +397,16 @@
       type: string
       domain: /Library/Preferences/com.apple.loginwindow
       description: Set the information displayed at the login window to show the system's host name when clicking on clock
+
+    - key: DisplayResolutionEnabled
+      value: false
+      type: bool
+      domain: /Library/Preferences/com.apple.windowserver
+      description: Enable HiDPI display modes (requires restart)
   become: true
+
+  # TODO
+  # # Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+# defaults write com.apple.dock persistent-apps -array
