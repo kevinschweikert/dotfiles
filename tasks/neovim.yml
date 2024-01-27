@@ -1,10 +1,8 @@
 ---
-- name: check for existing neovim config
-  ansible.builtin.set_fact:
-    config_exists: "{{ '~/.config/nvim/init.lua' | expanduser is not ansible.builtin.exists }}"
-
-- name: install lazyvim
-  ansible.builtin.git:
-    repo: https://github.com/LazyVim/starter
+- name: link nvim config
+  file:
+    src: "{{ playbook_dir }}/files/nvim"
     dest: ~/.config/nvim
-  when: config_exists
+    mode: 0644
+    state: link
+    force: true
