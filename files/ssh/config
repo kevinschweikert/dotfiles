@@ -23,6 +23,12 @@ Host corpcast-runner.im-en.com
     IdentityFile ~/.ssh/id_ed25519_imen
     IdentitiesOnly yes
 
+Host snipe-it.im-en.com
+    Hostname snipe-it.im-en.com
+    User imen
+    IdentityFile ~/.ssh/id_ed25519_imen
+    IdentitiesOnly yes
+
 Host github.com
     HostName ssh.github.com
     Port 443
