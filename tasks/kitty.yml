@@ -1,30 +1,8 @@
 ---
-- name: create kitty themes dir
-  file:
-    path: ~/.config/kitty
-    state: directory
-    mode: 0755
-
 - name: link kitty config
   file:
     src: "{{ playbook_dir }}/files/kitty"
     dest: ~/.config/kitty
-    mode: 0644
+    mode: 0744
     state: link
     force: true
-# - name: create kitty themes dir
-#   file:
-#     path: ~/.config/kitty/themes
-#     state: directory
-#     mode: 0755
-#
-# - name: copy kitty theme
-#   file:
-#     src: "files/kitty/themes/{{ item }}"
-#     dest: "~/.config/kitty/themes/{{ item }}"
-#     mode: 0644
-#     state: link
-#     force: true
-#   loop:
-#     - OneDark.conf
-#     - tokyonight.conf
