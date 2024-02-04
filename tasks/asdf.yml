@@ -4,11 +4,11 @@
       - name: erlang
         version: 26.2.1
       - name: elixir
-        version: 1.16.0-otp-26
+        version: 1.16.1-otp-26
       - name: nodejs
         version: 18.12.1
       - name: rust
-        version: 1.74.1
+        version: 1.75.1
 
 - name: add tool plugins
   shell: "asdf plugin add {{ item.name }}"
