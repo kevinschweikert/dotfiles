@@ -6,6 +6,7 @@ homebrew_installed_packages:
   - ansible
   - asdf
   - autoconf
+  - bash
   - bat
   - bitwarden-cli
   - coreutils

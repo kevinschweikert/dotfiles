@@ -18,6 +18,11 @@
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
     dest: ~/.config/tmux/plugins/tpm
-    update: true
+    update: false
     single_branch: true
     version: master
+
+- name: install plugins
+  ansible.builtin.shell: ~/.config/tmux/plugins/tpm/bin/install_plugins
+  register: plugins_output
+  changed_when: plugins_output.stdout_lines | reject('search', 'Already installed') | list | length > 0
