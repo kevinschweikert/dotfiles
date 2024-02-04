@@ -46,6 +46,7 @@ homebrew_installed_packages:
   - zoxide
 
 homebrew_cask_apps:
+  - activitywatch
   - affinity-photo
   - affinity-designer
   - affinity-publisher
