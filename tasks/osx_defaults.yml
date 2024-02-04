@@ -1,9 +1,11 @@
 - name: quit settings
   shell: osascript -e 'tell application "System Preferences" to quit'
+  changed_when: false
 
 - name: disable boot sound effects
   shell: nvram SystemAudioVolume=" "
   become: true
+  changed_when: false
 
 - name: set settings for finder
   community.general.osx_defaults:

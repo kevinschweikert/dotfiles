@@ -72,6 +72,7 @@
   loop:
     - file: id_ed25519_imen
     - file: id_ed25519
+  changed_when: false
 
 - name: link ssh config
   file:
@@ -80,11 +81,6 @@
     state: link
     force: true
     mode: 0644
-
-- name: create imen config file
-  file:
-    path: ~/.ssh/config.d/imen
-    state: touch
 
 - name: copy imen config template
   template:

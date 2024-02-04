@@ -5,6 +5,9 @@
     - homebrew.yml
     - vault.yml
 
+  vars:
+    fish_update_completions: false
+
   roles:
     - role: geerlingguy.mac.homebrew
       tags:

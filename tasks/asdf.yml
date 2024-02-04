@@ -1,3 +1,4 @@
+---
 - name: register tools and versions
   set_fact:
     tools:
@@ -29,3 +30,4 @@
   args:
     executable: "{{ ansible_user_shell }}"
   loop: "{{ tools }}"
+  changed_when: false

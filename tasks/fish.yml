@@ -39,4 +39,5 @@
 - name: update completions
   shell: "fish_update_completions"
   args:
-    executable: '{{ ansible_user_shell }}'
+    executable: "{{ ansible_user_shell }}"
+  when: fish_update_completions
