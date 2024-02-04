@@ -3,6 +3,6 @@
   file:
     src: "{{ playbook_dir }}/files/nvim"
     dest: ~/.config/nvim
-    mode: 0644
+    mode: 0744
     state: link
     force: true
