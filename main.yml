@@ -23,6 +23,7 @@
     - import_tasks: tasks/kitty.yml
     - import_tasks: tasks/neovim.yml
     - import_tasks: tasks/tmux.yml
+    - import_tasks: tasks/zellij.yml
     - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fonts.yml
     - import_tasks: tasks/zed.yml

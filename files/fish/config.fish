@@ -6,7 +6,7 @@ function fish_greeting
     pfetch
 end
 
-set EDITOR nvim
+set -x EDITOR nvim
 set TERM xterm-256color
 
 set -x ERL_AFLAGS "-kernel shell_history enabled"
@@ -40,3 +40,4 @@ fish_add_path /opt/homebrew/bin
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 starship init fish | source
 zoxide init fish | source
+zellij setup --generate-completion fish | source

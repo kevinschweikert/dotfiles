@@ -1,0 +1,15 @@
+---
+- name: link zellij config
+  file:
+    src: "{{ playbook_dir }}/files/zellij"
+    dest: ~/.config/zellij
+    mode: 0744
+    state: link
+# - name: check for completions
+#   stat:
+#     path: ~/.config/fish/completions/zellij.fish
+#   register: zellij_config
+#
+# - name: generate completions
+#   shell: zellij setup --generate-completion fish > ~/.config/fish/completions/zellij.fish
+#   when: not zellij_config.stat.exists
