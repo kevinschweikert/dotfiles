@@ -1,36 +1,53 @@
-Include config.d/*
+Host *
+    include config.d/*
 
 Host *
-    IgnoreUnknown UseKeyChain
-    UseKeychain yes
-    AddKeysToAgent yes
+    ignoreunknown UseKeyChain
+    usekeychain yes
+    addkeystoagent yes
 
 Host gitlab.im-en.com
-    Hostname gitlab.im-en.com
-    User kschweikert
-    IdentityFile ~/.ssh/id_ed25519_imen
-    IdentitiesOnly yes
+    hostname gitlab.im-en.com
+    user kschweikert
+    identityfile ~/.ssh/id_ed25519_imen
+    identitiesonly yes
 
 Host gitlab-runner.im-en.com
-    Hostname gitlab-runner.im-en.com
-    User imen
-    IdentityFile ~/.ssh/id_ed25519_imen
-    IdentitiesOnly yes
+    hostname gitlab-runner.im-en.com
+    user imen
+    identityfile ~/.ssh/id_ed25519_imen
+    identitiesonly yes
 
 Host corpcast-runner.im-en.com
-    Hostname 172.16.1.61
-    User imen
-    IdentityFile ~/.ssh/id_ed25519_imen
-    IdentitiesOnly yes
+    hostname 172.16.1.61
+    user imen
+    identityfile ~/.ssh/id_ed25519_imen
+    identitiesonly yes
 
 Host snipe-it.im-en.com
-    Hostname snipe-it.im-en.com
-    User imen
-    IdentityFile ~/.ssh/id_ed25519_imen
-    IdentitiesOnly yes
+    hostname snipe-it.im-en.com
+    user imen
+    identityfile ~/.ssh/id_ed25519_imen
+    identitiesonly yes
+
+Host buergerschaft-mediathek-prod.im-en.com
+    hostname buergerschaft-mediathek-prod.im-en.com
+    identityfile ~/.ssh/id_ed25519_imen
+    user imen
+
+Host buergerschaft-mediathek-stage.im-en.com
+    hostname buergerschaft-mediathek-stage.im-en.com
+    identityfile ~/.ssh/id_ed25519_imen
+    user imen
+
+Host buergerschaft-mediathek-test.im-en.com
+    hostname buergerschaft-mediathek-test.im-en.com
+    identityfile ~/.ssh/id_ed25519_imen
+    user imen
 
 Host github.com
-    HostName ssh.github.com
-    Port 443
-    IdentityFile ~/.ssh/id_ed25519
-    IdentitiesOnly yes
+    hostname ssh.github.com
+    port 443
+    identityfile ~/.ssh/id_ed25519
+    identitiesonly yes
+
