@@ -30,24 +30,21 @@ Host snipe-it.im-en.com
     identityfile ~/.ssh/id_ed25519_imen
     identitiesonly yes
 
-Host buergerschaft-mediathek-prod.im-en.com
-    hostname buergerschaft-mediathek-prod.im-en.com
-    identityfile ~/.ssh/id_ed25519_imen
-    user imen
-
-Host buergerschaft-mediathek-stage.im-en.com
-    hostname buergerschaft-mediathek-stage.im-en.com
-    identityfile ~/.ssh/id_ed25519_imen
-    user imen
-
-Host buergerschaft-mediathek-test.im-en.com
-    hostname buergerschaft-mediathek-test.im-en.com
-    identityfile ~/.ssh/id_ed25519_imen
-    user imen
-
 Host github.com
     hostname ssh.github.com
     port 443
     identityfile ~/.ssh/id_ed25519
     identitiesonly yes
 
+Host prod.mediathek-hh.im-en.com
+    hostname prod.mediathek-hh.im-en.com
+    identityfile /Users/kevinschweikert/.ssh/id_ed25519_imen
+    user imen
+Host dev.mediathek-hh.im-en.com
+    hostname dev.mediathek-hh.im-en.com
+    identityfile /Users/kevinschweikert/.ssh/id_ed25519_imen
+    user imen
+Host demo.mediathek-hh.im-en.com
+    hostname demo.mediathek-hh.im-en.com
+    identityfile /Users/kevinschweikert/.ssh/id_ed25519_imen
+    user imen
