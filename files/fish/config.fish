@@ -29,6 +29,7 @@ alias wget='wget -c'
 alias df='df -H'
 alias du='du -ch'
 alias g='git'
+alias rg='rg --hyperlink-format=kitty'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias ls='ls --color=auto'
