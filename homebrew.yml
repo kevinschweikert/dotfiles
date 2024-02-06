@@ -12,9 +12,11 @@ homebrew_installed_packages:
   - coreutils
   - docker-buildx
   - entr
+  - exiftool
   - eza
   - fd
   - ffmpeg
+  - ffmpegthumbnailer
   - fish
   - flyctl
   - fop
@@ -27,6 +29,7 @@ homebrew_installed_packages:
   - lazygit
   - libxslt
   - mariadb-connector-c
+  - mpv
   - neovim
   - openssl@1.1
   - openssl@3
@@ -36,14 +39,17 @@ homebrew_installed_packages:
   - pkg-config
   - podman
   - podman-compose
+  - poppler
   - ripgrep
   - squashfs
   - starship
   - tailspin
   - tmux
+  - unar
   - wxwidgets
   - xh
   - xz
+  - yazi
   - zellij
   - zoxide
 
