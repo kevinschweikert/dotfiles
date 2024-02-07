@@ -37,6 +37,8 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+source $XDG_CONFIG_HOME/fish/colors/tokyonight.fish
+
 fish_add_path /opt/homebrew/bin
 source /opt/homebrew/opt/asdf/libexec/asdf.fish
 starship init fish | source
