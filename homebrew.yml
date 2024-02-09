@@ -24,6 +24,7 @@ homebrew_installed_packages:
   - fzf
   - git
   - git-lfs
+  - hcloud
   - imagemagick
   - jq
   - lazygit
