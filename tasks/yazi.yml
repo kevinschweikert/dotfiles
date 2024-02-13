@@ -1,0 +1,46 @@
+- name: add convenience function
+  ansible.builtin.copy:
+    dest: ~/.config/fish/functions/ya.fish
+    content: |
+      function ya() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          cd -- "$cwd"
+        fi
+        rm -f -- "$tmp"
+      }
+
+- name: add yazi config dir
+  ansible.builtin.file:
+    path: ~/.config/yazi/
+    state: directory
+
+- name: add yazi plugin dir
+  ansible.builtin.file:
+    path: ~/.config/yazi/plugins/smart-enter.yazi
+    state: directory
+    recurse: true
+
+- name: add smart enter plugin
+  ansible.builtin.copy:
+    dest: ~/.config/yazi/plugins/smart-enter.yazi/init.lua
+    content: |
+      return {
+        entry = function()
+          local h = cx.active.current.hovered
+          ya.manager_emit(h and h.cha.is_dir and "enter" or "open", {})
+        end,
+      }
+
+- name: add smart-enter plugin to keymap
+  ansible.builtin.blockinfile:
+    path: ~/.config/yazi/keymap.toml
+    append_newline: true
+    prepend_newline: true
+    create: true
+    block: |
+      [[manager.prepend_keymap]]
+        on   = [ "l" ]
+        exec = "plugin --sync smart-enter"
+        desc = "Enter the child directory, or open the file"

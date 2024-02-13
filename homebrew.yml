@@ -30,6 +30,7 @@ homebrew_installed_packages:
   - lazygit
   - libxslt
   - mariadb-connector-c
+  - mediainfo
   - mpv
   - neovim
   - openssl@1.1
