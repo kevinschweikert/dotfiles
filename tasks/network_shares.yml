@@ -1,0 +1,47 @@
+---
+# https://gist.github.com/rudelm/7bcc905ab748ab9879ea
+#
+- name: add mount points
+  ansible.builtin.lineinfile:
+    path: /etc/synthetic.conf
+    line: "{{ item.mount }}"
+    regexp: ^{{ item.mount }}
+    create: true
+  loop: "{{ afp_shares | default([]) + smb_shares | default([]) }}"
+  become: true
+  notify:
+    - reboot
+
+- name: configure autofs for afp
+  ansible.builtin.lineinfile:
+    path: /etc/auto_master
+    line: /-  auto_afp  -nobrowse,nosuid
+    regexp: ^\/-\tauto_afp
+  become: true
+
+- name: add afp shares
+  loop: "{{ afp_shares }}"
+  when: afp_shares is defined and afp_shares != []
+  ansible.builtin.lineinfile:
+    path: /etc/auto_afp
+    regexp: ^\/{{ item.mount }}
+    line: "/{{ item.mount }} -fstype=afp,rw afp://{{ item.host }}:{{ item.share }}"
+    create: true
+  become: true
+
+- name: configure autofs for smb
+  ansible.builtin.lineinfile:
+    path: /etc/auto_master
+    line: /-  auto_smb  -noowners,nosuid
+    regexp: ^\/-\tauto_afp
+  become: true
+
+- name: add smb shares
+  loop: "{{ smb_shares }}"
+  when: smb_shares is defined and smb_shares != []
+  ansible.builtin.lineinfile:
+    path: /etc/auto_smb
+    regexp: ^\/{{ item.mount }}
+    line: "/{{ item.mount }} -fstype=smbfs,soft,noowners,nosuid,rw ://{{ item.username }}:{{ item.password }}@{{ item.host }}:{{ item.share }}"
+    create: true
+  become: true

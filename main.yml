@@ -7,6 +7,10 @@
 
   vars:
     fish_update_completions: false
+    afp_shares:
+      - mount: nas66
+        share: /Intermediate
+        host: 172.16.0.166
 
   roles:
     - role: geerlingguy.mac.homebrew
@@ -28,3 +32,4 @@
     - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fonts.yml
     - import_tasks: tasks/zed.yml
+    - import_tasks: tasks/network_shares.yml
