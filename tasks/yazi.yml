@@ -2,14 +2,14 @@
   ansible.builtin.copy:
     dest: ~/.config/fish/functions/ya.fish
     content: |
-      function ya() {
-        local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-        yazi "$@" --cwd-file="$tmp"
-        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      function ya
+        set tmp (mktemp -t "yazi-cwd.XXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
           cd -- "$cwd"
-        fi
+        end
         rm -f -- "$tmp"
-      }
+      end
 
 - name: add yazi config dir
   ansible.builtin.file:
