@@ -9,10 +9,12 @@
 	br = branch
 	sw = switch
 	up = push
+  who = blame -w -C -C -C
+	fpush = push --force-with-lease
 [push]
 	autoSetupRemote = true
 [core]
-	excludesfile = /Users/kevinschweikert/.gitignore
+	excludesfile = ~/.gitignore
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -22,5 +24,14 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
+  autoUpdate = true
 [pull]
 	ff = only
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true

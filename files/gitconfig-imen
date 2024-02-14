@@ -1,3 +1,4 @@
 [user]
 name = Kevin Schweikert
 email = k.schweikert@im-en.com
+signingKey = ~/.ssh/id_ed25519_imen.pub
