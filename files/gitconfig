@@ -13,8 +13,10 @@
 	fpush = push --force-with-lease
 [push]
 	autoSetupRemote = true
+	followtags = true
 [core]
 	excludesfile = ~/.gitignore
+	pager = delta
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -35,3 +37,15 @@
 	format = ssh
 [commit]
 	gpgsign = true
+[merge]
+	conflictstyle = zdiff3
+[rebase]
+	autosquash = true
+[transfer]
+	fsckobjects = true
+[fetch]
+	fsckobjects = true
+[receive]
+	fsckObjects = true
+[diff]
+	colorMoved = default
