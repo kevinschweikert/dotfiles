@@ -1,8 +1,11 @@
 ---
 - name: link nvim config
   file:
-    src: "{{ playbook_dir }}/files/nvim"
-    dest: ~/.config/nvim
+    src: "{{ playbook_dir }}/files/{{ item }}"
+    dest: ~/.config/{{ item }}
     mode: 0744
     state: link
     force: true
+  loop:
+    - nvim
+    - lvim

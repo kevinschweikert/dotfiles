@@ -1,70 +1,4 @@
--- vim: ts=2 sts=2 sw=2 et
 return {
-	-- [[ Plugin Specs list ]]
-
-	-- NOTE: Plugins can be added with a link ().
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
-	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
-
-	-- Here is a more advanced example where we pass configuration
-	-- options to `gitsigns.nvim`. This is equivalent to the following lua:
-	--    require('gitsigns').setup({ ... })
-	--
-	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
-
-	-- NOTE: Plugins can also be configured to run lua code when they are loaded.
-	--
-	-- This is often very useful to both group configuration, as well as handle
-	-- lazy loading plugins that don't need to be loaded immediately at startup.
-	--
-	-- For example, in the following configuration, we use:
-	--  event = 'VeryLazy'
-	--
-	-- which loads which-key after all the UI elements are loaded. Events can be
-	-- normal autocommands events (:help autocomd-events).
-	--
-	-- Then, because we use the `config` key, the configuration only runs
-	-- after the plugin has been loaded:
-	--  config = function() ... end
-
-	{ -- Useful plugin to show you pending keybinds.
-		"folke/which-key.nvim",
-		event = "VeryLazy", -- Sets the loading event to 'VeryLazy'
-		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
-
-			-- Document existing key chains
-			require("which-key").register({
-				["<leader>c"] = { name = "[C]ode", _ = "which_key_ignore" },
-				["<leader>d"] = { name = "[D]ocument", _ = "which_key_ignore" },
-				["<leader>r"] = { name = "[R]ename", _ = "which_key_ignore" },
-				["<leader>s"] = { name = "[S]earch", _ = "which_key_ignore" },
-				["<leader>w"] = { name = "[W]orkspace", _ = "which_key_ignore" },
-			})
-		end,
-	},
-
-	-- NOTE: Plugins can specify dependencies.
-	--
-	-- The dependencies are proper plugin specifications as well - anything
-	-- you do for a plugin at the top level, you can do for a dependency.
-	--
-	-- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -101,7 +35,7 @@ return {
 			-- Neovim. This is where `mason` and related plugins come into play.
 			--
 			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-			-- and elegantly composed help section, :help lsp-vs-treesitter
+			-- and elegantly composed help section, `:help lsp-vs-treesitter`
 
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
@@ -206,19 +140,54 @@ return {
 				docker_compose_language_service = {},
 				dockerls = {},
 				elixirls = {},
-				emmet_ls = {},
+				emmet_ls = {
+					filetypes = {
+						"astro",
+						"css",
+						"eelixir",
+						"elixir",
+						"eruby",
+						"heex",
+						"html",
+						"htmldjango",
+						"javascriptreact",
+						"less",
+						"pug",
+						"sass",
+						"scss",
+						"svelte",
+						"typescriptreact",
+						"vue",
+					},
+				},
 				html = {},
 				jsonls = {},
 				pyright = {},
 				ruff_lsp = {},
 				rust_analyzer = {},
-				tailwindcss = {},
+				tailwindcss = {
+					filetypes = { "html", "elixir", "eelixir", "heex" },
+					init_options = {
+						userLanguages = {
+							elixir = "html-eex",
+							eelixir = "html-eex",
+							heex = "html-eex",
+						},
+					},
+					settings = {
+						tailwindCSS = {
+							experimental = {
+								classRegex = {
+									'class[:]\\s*"([^"]*)"',
+								},
+							},
+						},
+					},
+				},
 				terraformls = {},
 				yamlls = {},
 				-- clangd = {},
 				-- gopls = {},
-				-- pyright = {},
-				-- rust_analyzer = {},
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
@@ -237,9 +206,6 @@ return {
 							runtime = { version = "LuaJIT" },
 							workspace = {
 								checkThirdParty = false,
-								diagnostics = {
-									globals = { "vim" },
-								},
 								-- Tells lua_ls where to find all the Lua files that you have loaded
 								-- for your neovim configuration.
 								library = {
@@ -248,6 +214,9 @@ return {
 								},
 								-- If lua_ls is really slow on your computer, you can try this instead:
 								-- library = { vim.env.VIMRUNTIME },
+							},
+							completion = {
+								callSnippet = "Replace",
 							},
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 							-- diagnostics = { disable = { 'missing-fields' } },
@@ -276,159 +245,15 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						require("lspconfig")[server_name].setup({
-							cmd = server.cmd,
-							settings = server.settings,
-							filetypes = server.filetypes,
-							-- This handles overriding only values explicitly passed
-							-- by the server configuration above. Useful when disabling
-							-- certain features of an LSP (for example, turning off formatting for tsserver)
-							capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
-						})
+						-- This handles overriding only values explicitly passed
+						-- by the server configuration above. Useful when disabling
+						-- certain features of an LSP (for example, turning off formatting for tsserver)
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						require("lspconfig")[server_name].setup(server)
 					end,
 				},
 			})
-		end,
-	},
-
-	{ -- Autocompletion
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			-- Snippet Engine & its associated nvim-cmp source
-			{
-				"L3MON4D3/LuaSnip",
-				build = (function()
-					-- Build Step is needed for regex support in snippets
-					-- This step is not supported in many windows environments
-					-- Remove the below condition to re-enable on windows
-					if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-						return
-					end
-					return "make install_jsregexp"
-				end)(),
-			},
-			"saadparwaiz1/cmp_luasnip",
-
-			-- Adds other completion capabilities.
-			--  nvim-cmp does not ship with all sources by default. They are split
-			--  into multiple repos for maintenance purposes.
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-
-			-- If you want to add a bunch of pre-configured snippets,
-			--    you can use this plugin to help you. It even has snippets
-			--    for various frameworks/libraries/etc. but you will have to
-			--    set up the ones that are useful for you.
-			-- 'rafamadriz/friendly-snippets',
-		},
-		config = function()
-			-- See `:help cmp`
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-			luasnip.config.setup({})
-
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
-					end,
-				},
-				completion = { completeopt = "menu,menuone,noinsert" },
-
-				-- For an understanding of why these mappings were
-				-- chosen, you will need to read `:help ins-completion`
-				--
-				-- No, but seriously. Please read `:help ins-completion`, it is really good!
-				mapping = cmp.mapping.preset.insert({
-					-- Select the [n]ext item
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					-- Select the [p]revious item
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-
-					-- Accept ([y]es) the completion.
-					--  This will auto-import if your LSP supports it.
-					--  This will expand snippets if the LSP sent a snippet.
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
-
-					-- Manually trigger a completion from nvim-cmp.
-					--  Generally you don't need this, because nvim-cmp will display
-					--  completions whenever it has completion options available.
-					["<C-Space>"] = cmp.mapping.complete({}),
-
-					-- Think of <c-l> as moving to the right of your snippet expansion.
-					--  So if you have a snippet that's like:
-					--  function $name($args)
-					--    $body
-					--  end
-					--
-					-- <c-l> will move you to the right of each of the expansion locations.
-					-- <c-h> is similar, except moving you backwards.
-					["<C-l>"] = cmp.mapping(function()
-						if luasnip.expand_or_locally_jumpable() then
-							luasnip.expand_or_jump()
-						end
-					end, { "i", "s" }),
-					["<C-h>"] = cmp.mapping(function()
-						if luasnip.locally_jumpable(-1) then
-							luasnip.jump(-1)
-						end
-					end, { "i", "s" }),
-				}),
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-					{ name = "path" },
-				},
-			})
-		end,
-	},
-
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-		"folke/tokyonight.nvim",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- Load the colorscheme here
-			vim.cmd.colorscheme("tokyonight-night")
-
-			-- You can configure highlights by doing something like
-			vim.cmd.hi("Comment gui=none")
-		end,
-	},
-
-	-- Highlight todo, notes, etc in comments
-	{ "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, opts = { signs = false } },
-
-	{ -- Collection of various small independent plugins/modules
-		"echasnovski/mini.nvim",
-		config = function()
-			-- Better Around/Inside textobjects
-			--
-			-- Examples:
-			--  - va)  - [V]isually select [A]round [)]parenthen
-			--  - yinq - [Y]ank [I]nside [N]ext [']quote
-			--  - ci'  - [C]hange [I]nside [']quote
-			require("mini.ai").setup({ n_lines = 500 })
-
-			-- Add/delete/replace surroundings (brackets, quotes, etc.)
-			--
-			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-			-- - sd'   - [S]urround [D]elete [']quotes
-			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
-
-			-- Simple and easy statusline.
-			--  You could remove this setup call if you don't like it,
-			--  and try some other statusline plugin
-			require("mini.statusline").setup()
-
-			-- ... and there is more!
-			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
 }
+-- vim: ts=2 sts=2 sw=2 et
