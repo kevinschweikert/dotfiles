@@ -60,6 +60,7 @@ homebrew_cask_apps:
   - affinity-photo
   - affinity-designer
   - affinity-publisher
+  - anydesk
   - arc
   - beekeeper-studio
   - bitwarden
@@ -78,6 +79,7 @@ homebrew_cask_apps:
   - shottr
   - spotify
   - stats
+  - teamviewer
   - transmission
   - visual-studio-code
   - zed
