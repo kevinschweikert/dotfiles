@@ -3,13 +3,13 @@
   set_fact:
     tools:
       - name: erlang
-        version: 26.2.2
+        version: 26.2.3
       - name: elixir
-        version: 1.16.1-otp-26
+        version: 1.16.2-otp-26
       - name: nodejs
-        version: 18.12.1
+        version: 20.12.0
       - name: rust
-        version: 1.76.0
+        version: 1.77.1
 
 - name: add tool plugins
   shell: "asdf plugin add {{ item.name }}"
