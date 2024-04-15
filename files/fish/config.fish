@@ -45,3 +45,4 @@ source /opt/homebrew/opt/asdf/libexec/asdf.fish
 starship init fish | source
 zoxide init --cmd cd fish | source
 zellij setup --generate-completion fish | source
+fzf --fish | source
