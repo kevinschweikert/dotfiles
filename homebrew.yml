@@ -30,8 +30,6 @@ homebrew_installed_packages:
   - lazygit
   - libxslt
   - mariadb-connector-c
-  - mediainfo
-  - mpv
   - neovim
   - openssl@1.1
   - openssl@3
@@ -73,6 +71,8 @@ homebrew_cask_apps:
   - kitty
   - linearmouse
   - microsoft-office-businesspro
+  - mediainfo
+  - mpv
   - nextcloud
   - obsidian
   - raycast
