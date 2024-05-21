@@ -15,7 +15,6 @@ return {
 					"heex",
 					"eex",
 					"erlang",
-
 					"javascript",
 					"jsdoc",
 					"json",
