@@ -15,6 +15,7 @@ homebrew_installed_packages:
   - exiftool
   - eza
   - fd
+  - fdk-aac
   - ffmpeg
   - ffmpegthumbnailer
   - fish
@@ -22,15 +23,21 @@ homebrew_installed_packages:
   - fop
   - fwup
   - fzf
+  - gh
   - git
   - git-lfs
+  - gnu-sed
+  - graphviz
   - hcloud
+  - hyperfine
   - imagemagick
   - jq
   - lazygit
   - libxslt
   - mariadb-connector-c
+  - media-info
   - neovim
+  - onefetch
   - openssl@1.1
   - openssl@3
   - opentofu
@@ -40,11 +47,14 @@ homebrew_installed_packages:
   - podman
   - podman-compose
   - poppler
+  - qrencode
+  - rclone
   - ripgrep
   - squashfs
   - starship
   - tailspin
   - tmux
+  - tokei
   - unar
   - wxwidgets
   - xh
@@ -54,32 +64,40 @@ homebrew_installed_packages:
   - zoxide
 
 homebrew_cask_apps:
-  - activitywatch
-  - affinity-photo
   - affinity-designer
+  - affinity-photo
   - affinity-publisher
   - anydesk
   - arc
+  - balenaetcher
   - beekeeper-studio
   - bitwarden
   - blender
+  - bruno
   - chromium
   - citrix-workspace
   - dash
   - docker
+  - firefox
   - freecad
   - kitty
   - linearmouse
-  - microsoft-office-businesspro
+  - livebook
   - mediainfo
+  - microsoft-office-businesspro
+  - microsoft-remote-desktop
+  - mockoon
   - mpv
   - nextcloud
+  - obs
   - obsidian
+  - powershell
   - raycast
   - shottr
   - spotify
   - stats
   - teamviewer
   - transmission
+  - tunnelblick
   - visual-studio-code
   - zed
