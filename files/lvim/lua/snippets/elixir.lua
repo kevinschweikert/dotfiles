@@ -7,5 +7,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("heex", {
 	s("el", fmt("<%= {} %>{}", { i(1), i(0) })),
-	s("ei", fmt("<%= if {} do %>{}<% end %>{}", { i(1), i(2), i(0) })),
+	s("ei", fmt("<%= if {} do %>\n\t{}<% end %>\n{}", { i(1), i(2), i(0) })),
+	s("ef", fmt("<%= for {} <- {} do %>\n\t{}\n<% end %>{}", { i(1), i(2), i(3), i(0) })),
 })
