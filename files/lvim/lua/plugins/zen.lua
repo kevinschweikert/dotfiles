@@ -7,7 +7,7 @@ return {
 				tmux = { enabled = true },
 				kitty = {
 					enabled = true,
-					-- font = "+4", -- font size increment
+					font = "+0", -- font size increment
 				},
 			},
 		},
