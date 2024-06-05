@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap 
 
 vim.keymap.set("n", "H", "^", { noremap = true })
 vim.keymap.set("n", "L", "$", { noremap = true })
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
 
 -- trouble
 vim.keymap.set("n", "<leader>xx", function()
