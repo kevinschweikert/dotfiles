@@ -6,7 +6,7 @@ return {
 			{
 				"williamboman/mason.nvim",
 				keys = {
-					{ "<leader>m", ":Mason<CR>", desc = "Harpoon add file" },
+					{ "<leader>m", ":Mason<CR>", desc = "Open Mason" },
 				},
 			},
 			"williamboman/mason-lspconfig.nvim",
@@ -15,6 +15,9 @@ return {
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ "j-hui/fidget.nvim", opts = {} },
+		},
+		opts = {
+			inlay_hints = { enabled = true },
 		},
 		config = function()
 			-- Brief Aside: **What is LSP?**
