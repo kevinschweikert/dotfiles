@@ -7,6 +7,7 @@ function fish_greeting
 end
 
 set -x EDITOR nvim
+set -x VISUAL nvim
 
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 set -x KERL_CONFIGURE_OPTIONS "--disable-debug --without-javac --with-ssl=$(brew --prefix openssl@3)"
@@ -17,8 +18,8 @@ set -x CFLAGS "-O2 -g -march=native"
 alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
-alias ls='eza'
-alias ll="eza -la --color=auto"
+alias ls='eza --color=auto --hyperlink'
+alias ll="eza -la --color=auto --hyperlink"
 alias sudo="sudo -i"
 alias untar='tar -zxvf '
 alias ping='ping -c 5'
@@ -31,7 +32,6 @@ alias g='git'
 alias rg='rg --hyperlink-format=kitty'
 
 ## Colorize the grep command output for ease of use (good for log files)##
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
