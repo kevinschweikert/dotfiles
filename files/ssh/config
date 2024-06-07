@@ -36,6 +36,13 @@ Host github.com
     identityfile ~/.ssh/id_ed25519
     identitiesonly yes
 
+Host storagebox
+    User u387306
+    Hostname u387306.your-storagebox.de
+    Port 23
+    IdentityFile ~/.ssh/id_ed25519_imen
+    IdentitiesOnly yes
+
 Host prod.mediathek-hh.im-en.com
     hostname prod.mediathek-hh.im-en.com
     identityfile /Users/kevinschweikert/.ssh/id_ed25519_imen
