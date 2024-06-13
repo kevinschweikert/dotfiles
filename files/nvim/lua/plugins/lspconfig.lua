@@ -112,6 +112,7 @@ return {
 				pyright = {},
 				ruff_lsp = {},
 				rust_analyzer = {},
+				biome = { single_file_support = true },
 				tailwindcss = {
 					filetypes = { "html", "elixir", "eelixir", "heex" },
 					init_options = {
