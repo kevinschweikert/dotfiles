@@ -10,12 +10,14 @@ return {
 			-- "ibhagwan/fzf-lua",              -- optional
 		},
 		opts = {},
-		keys = { {
-			"<leader>n",
-			function()
-				require("neogit").open()
-			end,
-			desc = "Neogit",
-		} },
+		keys = {
+			{
+				"<leader>n",
+				function()
+					require("neogit").open({ kind = "replace" })
+				end,
+				desc = "Neogit",
+			},
+		},
 	},
 }
