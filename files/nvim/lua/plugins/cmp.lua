@@ -34,11 +34,6 @@ return {
 					{ name = "snippets", keyword_length = 2 },
 					{ name = "buffer", keyword_length = 3 },
 				}),
-				experimental = {
-					ghost_text = {
-						hl_group = "CmpGhostText",
-					},
-				},
 				sorting = defaults.sorting,
 			}
 		end,
