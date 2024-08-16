@@ -46,8 +46,12 @@ return {
 				return ""
 			end
 
-			-- ... and there is more!
+			-- ... and there is mor!
 			--  Check out: https://github.com/echasnovski/mini.nvim
+			require("mini.starter").setup()
+			require("mini.sessions").setup({
+				autoread = true,
+			})
 		end,
 	},
 }
