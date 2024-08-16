@@ -31,6 +31,8 @@ alias du='du -ch'
 alias g='git'
 alias rg='rg --hyperlink-format=kitty'
 alias fnvim='nvim (fzf)'
+alias s='iex --dot-iex ~/.iex.exs -S mix phx.server'
+alias i='iex --dot-iex ~/.iex.exs -S mix'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -45,3 +47,4 @@ starship init fish | source
 zoxide init --cmd cd fish | source
 zellij setup --generate-completion fish | source
 fzf --fish | source
+direnv hook fish | source

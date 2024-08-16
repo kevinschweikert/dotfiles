@@ -9,7 +9,9 @@ homebrew_installed_packages:
   - bash
   - bat
   - bitwarden-cli
+  - chafa
   - coreutils
+  - direnv
   - docker-buildx
   - entr
   - exiftool
