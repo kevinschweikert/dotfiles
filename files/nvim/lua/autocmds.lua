@@ -83,3 +83,17 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "RecordingEnter" }, {
+	group = augroup("show_q_macro"),
+	callback = function()
+		vim.notify("Recording @" .. vim.fn.reg_recording())
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "RecordingLeave" }, {
+	group = augroup("hide_q_macro"),
+	callback = function()
+		vim.notify("Stopped recording @" .. vim.fn.reg_recording())
+	end,
+})
