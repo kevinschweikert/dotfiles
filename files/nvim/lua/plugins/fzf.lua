@@ -1,23 +1,17 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "echasnovski/mini.icons" },
-	-- config = function(_, _)
-	-- 	require("fzf-lua").setup({
-	-- 		keymap = {
-	-- 			fzf = {
-	-- 				["ctrl-q"] = "select-all+accept",
-	-- 			},
-	-- 		},
-	-- 	})
-	-- 	require("fzf-lua.providers.ui_select").register()
-	-- end,
-	opts = {
-		keymap = {
-			fzf = {
-				["ctrl-q"] = "select-all+accept",
+	config = function(_, _)
+		local fzf = require("fzf-lua")
+		fzf.setup({
+			keymap = {
+				fzf = {
+					["ctrl-q"] = "select-all+accept",
+				},
 			},
-		},
-	},
+		})
+		fzf.register_ui_select()
+	end,
 	keys = {
 		{ "<leader><leader>", "<cmd>lua require('fzf-lua').files()<cr>", desc = "Find files" },
 		{ "<leader>fg", "<cmd>lua require('fzf-lua').live_grep()<cr>", desc = "Find word" },
