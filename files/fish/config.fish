@@ -42,7 +42,13 @@ alias fgrep='fgrep --color=auto'
 source $XDG_CONFIG_HOME/fish/colors/tokyonight.fish
 
 fish_add_path /opt/homebrew/bin
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
+if status is-interactive
+    mise activate fish | source
+else
+    mise activate fish --shims | source
+end
+
 starship init fish | source
 zoxide init --cmd cd fish | source
 zellij setup --generate-completion fish | source

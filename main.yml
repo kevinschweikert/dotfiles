@@ -29,7 +29,6 @@
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/zellij.yml
     - import_tasks: tasks/yazi.yml
-    - import_tasks: tasks/asdf.yml
     - import_tasks: tasks/fonts.yml
     - import_tasks: tasks/zed.yml
     - import_tasks: tasks/network_shares.yml
