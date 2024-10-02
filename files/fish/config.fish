@@ -31,8 +31,16 @@ alias du='du -ch'
 alias g='git'
 alias rg='rg --hyperlink-format=kitty'
 alias fnvim='nvim (fzf)'
+
+# Elixir Aliases
 alias s='iex --dot-iex ~/.iex.exs -S mix phx.server'
 alias i='iex --dot-iex ~/.iex.exs -S mix'
+alias mdg='mix deps.get'
+alias mes='mix ecto.setup'
+alias mec='mix ecto.create'
+alias med='mix ecto.drop'
+alias mer='mix ecto.reset'
+alias mgm='mix gettext.extract --merge'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
