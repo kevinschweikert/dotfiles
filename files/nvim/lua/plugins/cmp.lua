@@ -1,83 +1,62 @@
 return {
-	-- auto completion
 	{
-		"hrsh7th/nvim-cmp",
-		version = false,
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-		},
-		opts = function()
-			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-			local cmp = require("cmp")
-			local defaults = require("cmp.config.default")()
-			return {
-				auto_brackets = {}, -- configure any filetype to auto add brackets
-				completion = {
-					completeopt = "menu,menuone,noinsert",
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<S-Space>"] = cmp.mapping.complete(),
-					["<C-y>"] = cmp.mapping.confirm(),
-					["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					["<C-CR>"] = cmp.mapping.abort(),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "path" },
-					{ name = "snippets", keyword_length = 2 },
-					{ name = "buffer", keyword_length = 3 },
-				}),
-				sorting = defaults.sorting,
-			}
-		end,
-	},
+		"saghen/blink.cmp",
+		lazy = false, -- lazy loading handled internally
+		-- optional: provides snippets for the snippet source
+		-- dependencies = "rafamadriz/friendly-snippets",
 
-	-- snippets
-	{
-		"nvim-cmp",
-		dependencies = {
-			{
-				"garymjr/nvim-snippets",
-				opts = {
-					friendly_snippets = true,
-				},
-				dependencies = { "rafamadriz/friendly-snippets" },
+		-- use a release tag to download pre-built binaries
+		version = "v0.*",
+		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- On musl libc based systems you need to add this flag
+		-- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
+
+		opts = {
+			keymap = {
+				show = "<C-space>",
+				hide = "<C-e>",
+				accept = "<C-y>",
+				select_prev = { "<Up>", "<C-p>" },
+				select_next = { "<Down>", "<C-n>" },
+
+				show_documentation = "<C-space>",
+				hide_documentation = "<C-space>",
+				scroll_documentation_up = "<C-b>",
+				scroll_documentation_down = "<C-f>",
+
+				snippet_forward = "<Tab>",
+				snippet_backward = "<S-Tab>",
 			},
-		},
-		opts = function(_, opts)
-			opts.snippet = {
-				expand = function(item)
-					return vim.snippet.expand(item.body)
-				end,
-			}
-			table.insert(opts.sources, { name = "snippets" })
-		end,
-		keys = {
-			{
-				"<Tab>",
-				function()
-					return vim.snippet.active({ direction = 1 }) and "<cmd>lua vim.snippet.jump(1)<cr>" or "<Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = { "i", "s" },
+			-- sources = {
+			-- 	-- similar to nvim-cmp's sources, but we point directly to the source's lua module
+			-- 	-- multiple groups can be provided, where it'll fallback to the next group if the previous
+			-- 	-- returns no completion items
+			-- 	-- WARN: This API will have breaking changes during the beta
+			-- 	providers = {
+			-- 		{
+			-- 			{ "blink.cmp.sources.lsp", keyword_length = 2 },
+			-- 			{ "blink.cmp.sources.path" },
+			-- 		},
+			-- 		{
+			-- 			{ "blink.cmp.sources.buffer" },
+			-- 			{ "blink.cmp.sources.snippets", score_offset = -3 },
+			-- 		},
+			-- 	},
+			-- },
+			highlight = {
+				-- sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- useful for when your theme doesn't support blink.cmp
+				-- will be removed in a future release, assuming themes add support
+				use_nvim_cmp_as_default = true,
 			},
-			{
-				"<S-Tab>",
-				function()
-					return vim.snippet.active({ direction = -1 }) and "<cmd>lua vim.snippet.jump(-1)<cr>" or "<Tab>"
-				end,
-				expr = true,
-				silent = true,
-				mode = { "i", "s" },
-			},
+			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "mono",
+			-- experimental auto-brackets support
+			accept = { auto_brackets = { enabled = true } },
+			-- experimental signature help support
+			trigger = { signature_help = { enabled = true } },
 		},
 	},
 }
