@@ -49,3 +49,5 @@
 	fsckObjects = true
 [diff]
 	colorMoved = default
+[submodule]
+	recurse = true
