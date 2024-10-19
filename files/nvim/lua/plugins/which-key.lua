@@ -33,6 +33,8 @@ return {
 				{ "<leader>s_", hidden = true },
 				{ "<leader>w", group = "[W]orkspace" },
 				{ "<leader>w_", hidden = true },
+				{ "<leader>o", group = "[O]bsidian" },
+				{ "<leader>_", hidden = true },
 			})
 		end,
 	},
