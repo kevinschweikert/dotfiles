@@ -3,7 +3,7 @@ return {
 		"saghen/blink.cmp",
 		lazy = false, -- lazy loading handled internally
 		-- optional: provides snippets for the snippet source
-		-- dependencies = "rafamadriz/friendly-snippets",
+		dependencies = "rafamadriz/friendly-snippets",
 
 		-- use a release tag to download pre-built binaries
 		version = "v0.*",
@@ -28,27 +28,16 @@ return {
 				snippet_forward = "<Tab>",
 				snippet_backward = "<S-Tab>",
 			},
-			-- sources = {
-			-- 	-- similar to nvim-cmp's sources, but we point directly to the source's lua module
-			-- 	-- multiple groups can be provided, where it'll fallback to the next group if the previous
-			-- 	-- returns no completion items
-			-- 	-- WARN: This API will have breaking changes during the beta
-			-- 	providers = {
-			-- 		{
-			-- 			{ "blink.cmp.sources.lsp", keyword_length = 2 },
-			-- 			{ "blink.cmp.sources.path" },
-			-- 		},
-			-- 		{
-			-- 			{ "blink.cmp.sources.buffer" },
-			-- 			{ "blink.cmp.sources.snippets", score_offset = -3 },
-			-- 		},
-			-- 	},
-			-- },
 			highlight = {
 				-- sets the fallback highlight groups to nvim-cmp's highlight groups
 				-- useful for when your theme doesn't support blink.cmp
 				-- will be removed in a future release, assuming themes add support
 				use_nvim_cmp_as_default = true,
+			},
+			windows = {
+				autocomplete = {
+					draw = "reversed",
+				},
 			},
 			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			-- adjusts spacing to ensure icons are aligned
