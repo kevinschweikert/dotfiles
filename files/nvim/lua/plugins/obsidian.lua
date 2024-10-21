@@ -13,6 +13,30 @@ return {
 		--   "BufReadPre path/to/my-vault/*.md",
 		--   "BufNewFile path/to/my-vault/*.md",
 		-- },
+		cmd = {
+			"ObsidianOpen",
+			"ObsidianNew",
+			"ObsidianQuickSwitch",
+			"ObsidianFollowLink",
+			"ObsidianBacklinks",
+			"ObsidianTags",
+			"ObsidianToday",
+			"ObsidianYesterday",
+			"ObsidianTomorrow",
+			"ObsidianDailies",
+			"ObsidianTemplate",
+			"ObsidianSearch",
+			"ObsidianLink",
+			"ObsidianLinkNew",
+			"ObsidianLinks",
+			"ObsidianExtractNote",
+			"ObsidianWorkspace",
+			"ObsidianPasteImg",
+			"ObsidianRename",
+			"ObsidianToggleCheckbox",
+			"ObsidianNewFromTemplate",
+			"ObsidianTOC",
+		},
 		dependencies = {
 			-- Required.
 			"nvim-lua/plenary.nvim",
@@ -29,14 +53,35 @@ return {
 					path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Kevin",
 				},
 			},
-			note_id_func = function(title)
-				if title ~= nil then
-					-- If title is given, transform it into valid file name.
-					return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-				else
-					error("need a title")
-				end
+			disable_frontmatter = false,
+			-- use title instead of spec.id
+			note_path_func = function(spec)
+				local path = spec.dir / tostring(spec.title)
+				return path:with_suffix(".md")
 			end,
+			note_id_func = function(title)
+				return title
+			end,
+			-- in favour of render markdown plugin
+			ui = { enable = false },
+			picker = {
+				-- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
+				name = "fzf-lua",
+				-- Optional, configure key mappings for the picker. These are the defaults.
+				-- Not all pickers support all mappings.
+				note_mappings = {
+					-- Create a new note from your query.
+					new = "<C-x>",
+					-- Insert a link to the selected note.
+					insert_link = "<C-l>",
+				},
+				tag_mappings = {
+					-- Add tag(s) to current note.
+					tag_note = "<C-x>",
+					-- Insert a tag at the current location.
+					insert_tag = "<C-l>",
+				},
+			},
 		},
 	},
 }

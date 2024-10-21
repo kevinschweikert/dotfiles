@@ -13,7 +13,7 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -26,8 +26,9 @@ vim.opt.showmode = false
 --  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 
--- Enable break indent
-vim.opt.breakindent = true
+vim.opt.breakindent = true -- Enable break indent
+vim.opt.wrap = true -- enable line wrap
+vim.opt.linebreak = true -- enable line wrap
 
 -- Save undo history
 vim.opt.undofile = true
@@ -97,4 +98,3 @@ vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
-vim.opt.wrap = false -- Disable line wrap
