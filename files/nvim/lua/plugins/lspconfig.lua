@@ -109,6 +109,7 @@ return {
 						"eelixir",
 						"elixir",
 						"eruby",
+						"gleam",
 						"heex",
 						"html",
 						"htmldjango",
