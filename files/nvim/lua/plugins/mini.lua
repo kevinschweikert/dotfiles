@@ -48,7 +48,10 @@ return {
 
 			-- ... and there is mor!
 			--  Check out: https://github.com/echasnovski/mini.nvim
-			require("mini.starter").setup()
+			require("mini.starter").setup({
+				-- removed "-" to call Oil in startup screen
+				query_updaters = "abcdefghijklmnopqrstuvwxyz0123456789_.",
+			})
 			require("mini.sessions").setup({
 				autoread = true,
 			})
