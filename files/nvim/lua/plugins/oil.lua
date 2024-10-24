@@ -20,9 +20,12 @@ return {
 				max_width = 100,
 				max_height = 30,
 			},
+			keymaps = {
+				["<C-y>"] = "actions.yank_entry",
+			},
 		},
 		-- Optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "echasnovski/mini.icons" },
 	},
 	{
 		"chrishrb/gx.nvim",
