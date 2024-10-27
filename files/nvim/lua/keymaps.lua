@@ -51,6 +51,3 @@ vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap 
 vim.keymap.set("n", "H", "^", { noremap = true })
 vim.keymap.set("n", "L", "$", { noremap = true })
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
-
--- lazygit
-vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open LazyGit in floating window", silent = true })
