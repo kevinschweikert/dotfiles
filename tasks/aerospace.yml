@@ -1,0 +1,9 @@
+---
+
+- name: link aerospace config
+  file:
+    src: "{{ playbook_dir }}/files/aerospace"
+    dest: ~/.config/aerospace
+    mode: 0744
+    state: link
+    force: true

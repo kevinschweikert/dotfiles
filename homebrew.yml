@@ -67,6 +67,7 @@ homebrew_installed_packages:
   - zoxide
 
 homebrew_cask_apps:
+  - nikitabobko/tap/aerospace
   - affinity-designer
   - affinity-photo
   - affinity-publisher
@@ -76,13 +77,11 @@ homebrew_cask_apps:
   - beekeeper-studio
   - bitwarden
   - blender
-  - bruno
   - chromium
   - citrix-workspace
   - dash
   - docker
   - firefox
-  - freecad
   - kitty
   - linearmouse
   - livebook

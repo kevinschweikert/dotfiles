@@ -25,6 +25,7 @@
     - import_tasks: tasks/git.yml
     - import_tasks: tasks/starship.yml
     - import_tasks: tasks/kitty.yml
+    - import_tasks: tasks/aerospace.yml
     - import_tasks: tasks/neovim.yml
     - import_tasks: tasks/tmux.yml
     - import_tasks: tasks/zellij.yml
