@@ -13,11 +13,13 @@
     state: link
     force: true
 
-- name: copy fish functions
+- name: link fish functions
   copy:
     src: files/fish/functions/
     dest: ~/.config/fish/functions/
     mode: 0644
+    state: link
+    force: true
 
 - name: add fish to shells
   lineinfile:
