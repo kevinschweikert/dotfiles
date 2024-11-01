@@ -13,21 +13,7 @@ return {
 		-- build = 'RUSTFLAGS="-C target-feature=-crt-static" cargo build --release',
 
 		opts = {
-			keymap = {
-				show = "<C-space>",
-				hide = "<C-e>",
-				accept = "<C-y>",
-				select_prev = { "<Up>", "<C-p>" },
-				select_next = { "<Down>", "<C-n>" },
-
-				show_documentation = "<C-space>",
-				hide_documentation = "<C-space>",
-				scroll_documentation_up = "<C-b>",
-				scroll_documentation_down = "<C-f>",
-
-				snippet_forward = "<Tab>",
-				snippet_backward = "<S-Tab>",
-			},
+			keymap = "default",
 			highlight = {
 				-- sets the fallback highlight groups to nvim-cmp's highlight groups
 				-- useful for when your theme doesn't support blink.cmp
@@ -38,6 +24,9 @@ return {
 				autocomplete = {
 					draw = "reversed",
 				},
+				-- ghost_text = {
+				-- 	enabled = true,
+				-- },
 			},
 			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			-- adjusts spacing to ensure icons are aligned
@@ -45,7 +34,7 @@ return {
 			-- experimental auto-brackets support
 			accept = { auto_brackets = { enabled = true } },
 			-- experimental signature help support
-			trigger = { signature_help = { enabled = true } },
+			-- trigger = { signature_help = { enabled = true } },
 		},
 	},
 }
