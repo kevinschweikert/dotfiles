@@ -7,7 +7,7 @@
   become: true
   changed_when: false
 
-- name: set settings for finder
+- name: set default settings for macOS
   community.general.osx_defaults:
     domain: "{{ item.domain }}"
     key: "{{ item.key }}"
@@ -383,6 +383,12 @@
       type: bool
       domain: org.m0k.transmission
       description: Enable automatic updating of the blocklist in Transmission
+
+    - key: NSWindowShouldDragOnGesture
+      value: true
+      type: bool
+      domain: NSGlobalDomain
+      description: move windows by holding ctrl+cmd and dragging any part of the window (not necessarily the window title)
 
 - name: settings with sudo
   community.general.osx_defaults:
