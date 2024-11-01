@@ -105,7 +105,7 @@ return {
 				ansiblels = {},
 				docker_compose_language_service = {},
 				dockerls = {},
-				elixirls = {},
+				-- elixirls = {},
 				emmet_language_server = {
 					filetypes = {
 						"astro",
@@ -172,6 +172,9 @@ return {
 					},
 				},
 			}
+
+			-- gleam - not supported by mason
+			require("lspconfig").gleam.setup({})
 
 			-- Ensure the servers and tools above are installed
 			--  To check the current status of installed tools and/or manually install
