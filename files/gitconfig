@@ -11,6 +11,9 @@
 	up = push
   who = blame -w -C -C -C
 	fpush = push --force-with-lease
+  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  unstage = reset HEAD
+  undo-commit = reset --soft HEAD^
 [push]
 	autoSetupRemote = true
 	followtags = true
@@ -31,6 +34,7 @@
 	ff = only
 [branch]
 	sort = -committerdate
+  autoSetupMerge = simple
 [column]
 	ui = auto
 [gpg]
