@@ -130,7 +130,7 @@ return {
 				html = {},
 				jsonls = {},
 				pyright = {},
-				ruff_lsp = {},
+				ruff = {},
 				rust_analyzer = {},
 				biome = { single_file_support = true },
 				tailwindcss = {
