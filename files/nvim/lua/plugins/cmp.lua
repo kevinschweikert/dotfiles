@@ -22,11 +22,16 @@ return {
 			},
 			windows = {
 				autocomplete = {
-					draw = "reversed",
+					draw = { columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } } },
 				},
 				-- ghost_text = {
 				-- 	enabled = true,
 				-- },
+			},
+			sources = {
+				completion = {
+					enabled_providers = { "lsp", "path", "snippets", "buffer" },
+				},
 			},
 			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			-- adjusts spacing to ensure icons are aligned
