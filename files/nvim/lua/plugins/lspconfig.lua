@@ -105,7 +105,7 @@ return {
 				ansiblels = {},
 				docker_compose_language_service = {},
 				dockerls = {},
-				-- elixirls = {},
+				lexical = {},
 				emmet_language_server = {
 					filetypes = {
 						"astro",
@@ -134,7 +134,7 @@ return {
 				rust_analyzer = {},
 				biome = { single_file_support = true },
 				tailwindcss = {
-					filetypes = { "html", "elixir", "eelixir", "heex" },
+					filetypes = { "html", "elixir", "eelixir", "heex", "svelte", "js" },
 					init_options = {
 						userLanguages = {
 							elixir = "html-eex",
