@@ -171,6 +171,9 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# Move apps directly to a workspace
+# Use 'aerospace list-apps' to get the app-id
+
 [[on-window-detected]]
 if.app-id = 'com.kapeli.dashdoc'
 run = 'layout floating'
@@ -186,6 +189,17 @@ run = "move-node-to-workspace B"
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+run = [
+  # FIX: this is a workaround for https://github.com/nikitabobko/AeroSpace/issues/68
+  # this was also observed in:
+  # - https://github.com/ghostty-org/ghostty/issues/1840
+  # - https://github.com/ghostty-org/ghostty/issues/2006
+  "layout floating",
+  "move-node-to-workspace T",
+]
 
 [workspace-to-monitor-force-assignment]
 b = 'secondary'
