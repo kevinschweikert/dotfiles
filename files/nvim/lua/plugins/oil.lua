@@ -3,6 +3,7 @@ return {
 	{
 		"stevearc/oil.nvim",
 		-- event = { "VeryLazy" },
+		lazy = false,
 		opts = {
 			default_file_explorer = true,
 			skip_confirm_for_simple_edits = true,
@@ -15,8 +16,10 @@ return {
 			},
 			win_options = {
 				wrap = true,
+				winblend = 0,
 			},
 			float = {
+				padding = 2,
 				max_width = 100,
 				max_height = 30,
 			},

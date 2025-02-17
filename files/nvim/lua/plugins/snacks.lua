@@ -6,6 +6,14 @@ return {
 		bigfile = { enabled = true },
 		quickfile = { enabled = true },
 		words = { enabled = true },
+		scratch = { enabled = true },
+		picker = { enabled = true },
+		scroll = { enabled = false },
+		statuscolumn = { enabled = true },
+		scope = { enabled = true },
+		terminal = { enabled = true, win = {
+			position = "float",
+		} },
 		dashboard = {
 			enabled = true,
 			sections = {
@@ -17,6 +25,77 @@ return {
 		},
 	},
 	keys = {
+		-- Top Pickers & Explorer
+		{
+			"<leader><space>",
+			function()
+				Snacks.picker.smart()
+			end,
+			desc = "Smart Find Files",
+		},
+		{
+			"<leader>fb",
+			function()
+				Snacks.picker.buffers()
+			end,
+			desc = "Buffers",
+		},
+		{
+			"<leader>/",
+			function()
+				Snacks.picker.grep()
+			end,
+			desc = "Grep",
+		},
+		{
+			"<leader>:",
+			function()
+				Snacks.picker.command_history()
+			end,
+			desc = "Command History",
+		},
+		{
+			"<leader>h",
+			function()
+				Snacks.picker.notifications()
+			end,
+			desc = "Notification History",
+		},
+		{
+			"<leader>e",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "File Explorer",
+		},
+		{
+			"<leader>ss",
+			function()
+				Snacks.picker.lsp_symbols()
+			end,
+			desc = "LSP Symbols",
+		},
+		{
+			"<leader>sS",
+			function()
+				Snacks.picker.lsp_workspace_symbols()
+			end,
+			desc = "LSP Workspace Symbols",
+		},
+		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
+			"<leader>S",
+			function()
+				Snacks.scratch.select()
+			end,
+			desc = "Select Scratch Buffer",
+		},
 		{
 			"<leader>un",
 			function()
@@ -53,9 +132,17 @@ return {
 			desc = "Toggle Terminal",
 		},
 		{
-			"<c-_>",
+			"<c-/>",
 			function()
 				Snacks.terminal()
+			end,
+			mode = "t",
+			desc = "Toggle Terminal",
+		},
+		{
+			"<c-_>",
+			function()
+				Snacks.which_key_ignore()
 			end,
 			desc = "which_key_ignore",
 		},
@@ -83,13 +170,7 @@ return {
 					file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
 					width = 0.6,
 					height = 0.6,
-					wo = {
-						spell = false,
-						wrap = false,
-						signcolumn = "yes",
-						statuscolumn = " ",
-						conceallevel = 3,
-					},
+					wo = { spell = false, wrap = false, signcolumn = "yes", statuscolumn = " ", conceallevel = 3 },
 				})
 			end,
 		},

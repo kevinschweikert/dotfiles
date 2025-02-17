@@ -1,6 +1,8 @@
 return {
 	"ibhagwan/fzf-lua",
 	dependencies = { "echasnovski/mini.icons" },
+	cmd = { "FzfLua" },
+	enabled = false,
 	opts = {
 		keymap = {
 			fzf = {

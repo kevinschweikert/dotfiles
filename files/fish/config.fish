@@ -87,3 +87,6 @@ zoxide init --cmd cd fish | source
 zellij setup --generate-completion fish | source
 fzf --fish | source
 direnv hook fish | source
+
+# uv
+fish_add_path "/Users/kevinschweikert/.local/bin"

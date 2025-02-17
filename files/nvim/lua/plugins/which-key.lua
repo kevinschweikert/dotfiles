@@ -19,7 +19,12 @@ return {
 		-- event = "VeryLazy", -- Sets the loading event to 'VeryLazy'
 		event = "VimEnter", -- Sets the loading event to 'VeryLazy'
 		config = function() -- This is the function that runs, AFTER loading
-			require("which-key").setup()
+			require("which-key").setup({
+				triggers = {
+					{ "<auto>", mode = "nixsotc" },
+					{ "s", mode = { "n", "v" } },
+				},
+			})
 
 			-- Document existing key chains
 			require("which-key").add({

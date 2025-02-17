@@ -68,3 +68,9 @@ Host mediathek-storagebox-1
     port 23
     identityfile ~/.ssh/id_ed25519_imen
     user u387306
+
+Host ut-vergleich
+    hostname ut-vergleich.im-en.com
+    port 22
+    identityfile ~/.ssh/id_ed25519_imen
+    user imen

@@ -18,9 +18,14 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			javascript = { { "prettierd", "prettier" } },
+			python = { "isort", "black" },
+			javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
 			fish = { "fish_indent" },
 			sh = { "shfmt" },
+		},
+		-- Set default options
+		default_format_opts = {
+			lsp_format = "fallback",
 		},
 		-- Set up format-on-save
 		format_on_save = function(bufnr)
