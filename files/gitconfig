@@ -1,22 +1,27 @@
+# vim: ft=git_config
+
 [includeIf "gitdir:~/projects/imen/"]
   path = .gitconfig-imen
 [includeIf "gitdir:~/projects/personal/"]
   path = .gitconfig-personal
 
+[column]
+        ui = auto
 [alias]
 	s = status
 	ci = commit
 	br = branch
 	sw = switch
 	up = push
-  who = blame -w -C -C -C
+	who = blame -w -C -C -C
 	fpush = push --force-with-lease
-  set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
-  unstage = reset HEAD
-  undo-commit = reset --soft HEAD^
+	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+	unstage = reset HEAD
+	undo-commit = reset --soft HEAD^
 [push]
 	autoSetupRemote = true
 	followtags = true
+        default = simple
 [core]
 	excludesfile = ~/.gitignore
 	pager = delta
@@ -29,22 +34,29 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
-  autoUpdate = true
+	autoUpdate = true
+
+[tag]
+        sort = version:refname
 [pull]
 	ff = only
+	rebase = true
 [branch]
 	sort = -committerdate
-  autoSetupMerge = simple
+	autoSetupMerge = simple
 [column]
 	ui = auto
 [gpg]
 	format = ssh
 [commit]
 	gpgsign = true
+        verbose = true
 [merge]
 	conflictstyle = zdiff3
 [rebase]
-	autosquash = true
+        autoSquash = true
+        autoStash = true
+        updateRefs = true
 [transfer]
 	fsckobjects = true
 [fetch]
@@ -52,6 +64,33 @@
 [receive]
 	fsckObjects = true
 [diff]
-	colorMoved = default
+	external = difft
+	tool = difftastic
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
 [submodule]
 	recurse = true
+[difftool]
+	# Run the difftool immediately, don't ask 'are you sure' each time.
+	prompt = false
+[pager]
+	# Use a pager if the difftool output is larger than one screenful,
+	# consistent with the behaviour of `git diff`.
+	difftool = true
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[push]
+        default = simple
+        autoSetupRemote = true
+        followTags = true
+[fetch]
+        prune = true
+        pruneTags = true
+        all = true
+[help]
+        autocorrect = prompt
