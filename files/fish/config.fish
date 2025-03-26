@@ -90,6 +90,7 @@ direnv hook fish | source
 
 # uv
 fish_add_path "/Users/kevinschweikert/.local/bin"
+fish_add_path "/Users/kevinschweikert/.lexical/bin"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
