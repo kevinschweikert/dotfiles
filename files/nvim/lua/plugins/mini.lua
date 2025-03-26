@@ -25,12 +25,12 @@ return {
 			-- - sr)'  - [S]urround [R]eplace [)] [']
 			require("mini.surround").setup()
 
-			local indentscope = require("mini.indentscope")
-			indentscope.setup({
-				draw = {
-					animation = indentscope.gen_animation.none(),
-				},
-			})
+			-- local indentscope = require("mini.indentscope")
+			-- indentscope.setup({
+			-- 	draw = {
+			-- 		animation = indentscope.gen_animation.none(),
+			-- 	},
+			-- })
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,

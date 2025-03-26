@@ -11,6 +11,8 @@ return {
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		scope = { enabled = true },
+		image = { enabled = true },
+		input = { enabled = true },
 		terminal = { enabled = true, win = {
 			position = "float",
 		} },
