@@ -7,21 +7,21 @@ return {
 			-- Customize or remove this keymap to your liking
 			"<leader>f",
 			function()
-				require("conform").format({ async = true, lsp_fallback = true })
+				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,
 			mode = "",
 			desc = "Format buffer",
 		},
 	},
-	-- Everything in opts will be passed to setup()
+	-- This will provide type hinting with LuaLS
+	---@module "conform"
+	---@type conform.setupOpts
 	opts = {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "ruff" },
-			javascript = { "biome", stop_after_first = true },
+			javascript = { "biome", "prettierd", "prettier", stop_after_first = true },
 			fish = { "fish_indent" },
-			sh = { "shfmt" },
 		},
 		-- Set default options
 		default_format_opts = {
@@ -33,11 +33,10 @@ return {
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
 			end
-			return { timeout_ms = 500, lsp_fallback = true }
+			return { timeout_ms = 500, lsp_format = "fallback" }
 		end,
 		-- Customize formatters
 		formatters = {
-			injected = { options = { ignore_errors = true } },
 			shfmt = {
 				prepend_args = { "-i", "2" },
 			},

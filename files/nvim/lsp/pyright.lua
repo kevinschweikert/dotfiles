@@ -8,15 +8,13 @@ return {
 		"Pipfile",
 		"pyrightconfig.json",
 		".git",
-		"uv.lock",
 	},
 	filetypes = { "python" },
 	settings = {
+		pyright = { disableOrganizeImports = true },
 		python = {
 			analysis = {
-				autoSearchPaths = true,
-				useLibraryCodeForTypes = true,
-				diagnosticMode = "openFilesOnly",
+				ignore = { "*" },
 			},
 		},
 	},
