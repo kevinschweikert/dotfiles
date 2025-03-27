@@ -19,6 +19,19 @@ vim.opt.rtp:prepend(lazypath)
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
+vim.lsp.enable({
+	"lexical",
+	"pyright",
+	"ruff",
+	"rust",
+	"lua",
+	"typescript",
+	"emmet",
+	"gleam",
+	"tailwind",
+	"biome",
+})
+
 require("options")
 require("keymaps")
 require("autocmds")
@@ -55,8 +68,6 @@ require("lazy").setup({
 		},
 	},
 })
-
-vim.lsp.enable({ "lexical", "pyright", "ruff", "rust", "lua", "typescript", "emmet", "gleam", "tailwind", "biome" })
 
 vim.diagnostic.config({
 	virtual_lines = {
