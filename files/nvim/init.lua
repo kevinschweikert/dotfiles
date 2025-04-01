@@ -1,10 +1,5 @@
 -- vim: ts=2 sts=2 sw=2 et
 
-vim.diagnostic.config({
-	float = {
-		border = "rounded",
-	},
-})
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -70,7 +65,17 @@ require("lazy").setup({
 })
 
 vim.diagnostic.config({
-	virtual_lines = {
-		current_line = true,
+	signs = { priority = 9999 },
+	underline = true,
+	update_in_insert = false, -- false so diags are updated on InsertLeave
+	virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
+	virtual_lines = { current_line = true, severity = { min = "ERROR" } },
+	severity_sort = true,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = true,
+		header = "",
 	},
 })
