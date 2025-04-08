@@ -84,7 +84,7 @@ end
 
 starship init fish | source
 zoxide init --cmd cd fish | source
-zellij setup --generate-completion fish | source
+# zellij setup --generate-completion fish | source
 fzf --fish | source
 direnv hook fish | source
 
