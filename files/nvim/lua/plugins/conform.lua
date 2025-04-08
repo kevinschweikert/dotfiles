@@ -21,6 +21,8 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			fish = { "fish_indent" },
+			toml = { "pyproject-fmt" },
+			yaml = { "yamlfmt" },
 		},
 		-- Set default options
 		default_format_opts = {
@@ -38,6 +40,9 @@ return {
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
+			},
+			yamlfmt = {
+				prepend_args = { "-formatter", "retain_line_breaks_single=true" },
 			},
 		},
 	},
