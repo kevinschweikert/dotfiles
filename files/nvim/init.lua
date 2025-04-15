@@ -22,16 +22,17 @@ vim.opt.rtp:prepend(lazypath)
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 vim.lsp.enable({
+	"biome",
+	"emmet",
+	"gleam",
+	"go",
 	"lexical",
+	"lua",
 	"pyright",
 	"ruff",
 	"rust",
-	"lua",
-	"typescript",
-	"emmet",
-	"gleam",
 	"tailwind",
-	"biome",
+	"typescript",
 })
 
 require("options")
