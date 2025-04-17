@@ -76,7 +76,7 @@ vim.opt.hlsearch = true
 
 vim.opt.autowrite = true -- Enable auto write
 vim.opt.completeopt = "menu,menuone,noinsert,popup,fuzzy"
-vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+-- vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
