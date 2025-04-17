@@ -29,6 +29,7 @@ vim.lsp.enable({
 	"go",
 	"lexical",
 	"lua",
+	"marksman",
 	"pyright",
 	"ruff",
 	"rust",
