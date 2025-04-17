@@ -23,6 +23,7 @@ vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
 vim.lsp.enable({
 	"biome",
+	"dprint",
 	"emmet",
 	"gleam",
 	"go",

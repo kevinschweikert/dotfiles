@@ -1,0 +1,8 @@
+// dprint init -c ~/.dprint.jsonc
+{
+	"markdown": {
+		"lineWidth": 120
+	},
+	"excludes": [],
+	"plugins": ["https://plugins.dprint.dev/markdown-0.18.0.wasm"]
+}
