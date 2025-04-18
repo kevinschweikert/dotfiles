@@ -9,3 +9,5 @@ Thumbs.db
 Session.vim
 id_ed25519*
 id_rsa*
+.dprint.json
+dprint.json

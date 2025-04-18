@@ -4,6 +4,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.g.have_nerd_font = true
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -22,9 +24,12 @@ vim.o.mouse = "a"
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
 
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.wrap = true -- enable line wrap
@@ -57,6 +62,9 @@ vim.opt.list = false
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+-- Preview substitutions live, as you type!
+vim.opt.inccommand = "split"
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -67,8 +75,8 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 
 vim.opt.autowrite = true -- Enable auto write
-vim.opt.completeopt = "menu,menuone,noselect"
-vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.completeopt = "menu,menuone,noinsert,popup,fuzzy"
+-- vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.formatoptions = "jcroqlnt" -- tcqj

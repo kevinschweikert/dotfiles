@@ -52,3 +52,6 @@ vim.keymap.set("n", "H", "^", { noremap = true })
 vim.keymap.set("n", "L", "$", { noremap = true })
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
 vim.keymap.set("i", "C-u", "<C-g>u<C-u>", { noremap = true })
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true })
+vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { noremap = true })

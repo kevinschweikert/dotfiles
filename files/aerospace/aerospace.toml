@@ -4,12 +4,12 @@
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+after-login-command = [  ]
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [  ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -46,6 +46,7 @@ automatically-unhide-macos-hidden-apps = false
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+
 [key-mapping]
 preset = 'qwerty'
 
@@ -56,6 +57,7 @@ preset = 'qwerty'
 #                 In this example, 24 is a default value when there is no match.
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
@@ -68,6 +70,7 @@ outer.right = 10
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
+
 [mode.main.binding]
 
 # All possible keys:
@@ -155,21 +158,24 @@ alt-shift-semicolon = 'mode service'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+esc = [ 'reload-config', 'mode main' ]
+r = [ 'flatten-workspace-tree', 'mode main' ] # reset layout
 f = [
   'layout floating tiling',
   'mode main',
 ] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+backspace = [ 'close-all-windows-but-current', 'mode main' ]
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = [ 'join-with left', 'mode main' ]
+alt-shift-j = [ 'join-with down', 'mode main' ]
+alt-shift-k = [ 'join-with up', 'mode main' ]
+alt-shift-l = [ 'join-with right', 'mode main' ]
+
+[workspace-to-monitor-force-assignment]
+B = 'secondary'
 
 # Move apps directly to a workspace
 # Use 'aerospace list-apps' to get the app-id
@@ -204,6 +210,3 @@ run = [
   "layout floating",
   "move-node-to-workspace T",
 ]
-
-[workspace-to-monitor-force-assignment]
-b = 'secondary'

@@ -1,22 +1,41 @@
 -- vim: ts=2 sts=2 sw=2 et
 
-vim.diagnostic.config({
-	float = {
-		border = "rounded",
-	},
-})
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  -- bootstrap lazy.nvim
-  -- stylua: ignore
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+---@diagnostic disable-next-line: undefined-field
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
+vim.lsp.enable({
+	"biome",
+	"dprint",
+	"emmet",
+	"gleam",
+	"go",
+	"lexical",
+	"lua",
+	"marksman",
+	"pyright",
+	"ruff",
+	"rust",
+	"tailwind",
+	"typescript",
+})
 
 require("options")
 require("keymaps")
@@ -52,5 +71,21 @@ require("lazy").setup({
 				"zipPlugin",
 			},
 		},
+	},
+})
+
+vim.diagnostic.config({
+	signs = { priority = 9999 },
+	underline = true,
+	update_in_insert = false, -- false so diags are updated on InsertLeave
+	virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
+	virtual_lines = { current_line = true, severity = { min = "ERROR" } },
+	severity_sort = true,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = true,
+		header = "",
 	},
 })
