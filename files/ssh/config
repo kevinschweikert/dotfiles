@@ -74,3 +74,9 @@ Host ut-vergleich
     port 22
     identityfile ~/.ssh/id_ed25519_imen
     user imen
+
+Host paperless
+    hostname 10.10.0.96
+    port 22
+    identityfile ~/.ssh/id_ed25519
+    user paperless
