@@ -8,6 +8,7 @@ end
 
 set -x EDITOR nvim
 set -x VISUAL nvim
+set -x MANPAGER "nvim +Man!"
 
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 set -x KERL_CONFIGURE_OPTIONS "--disable-debug --without-javac --with-ssl=$(brew --prefix openssl@3)"
