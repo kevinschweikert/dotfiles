@@ -2,6 +2,7 @@ return {
 	"obsidian-nvim/obsidian.nvim",
 	-- version = "*", -- recommended, use latest release instead of latest commit
 	lazy = true,
+	enabled = false,
 	ft = "markdown",
 	-- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
 	-- event = {
@@ -14,7 +15,7 @@ return {
 	cmd = { "ObsidianQuickSwitch" },
 	keys = {
 		{ "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian Quick Switch" },
-		{ "<leader>on", "<cmd>ObsidianNew", desc = "Obsidian New" },
+		{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Obsidian New" },
 	},
 	dependencies = {
 		-- Required.
@@ -23,6 +24,7 @@ return {
 		-- see below for full list of optional dependencies 👇
 	},
 	opts = {
+		ui = { enable = false },
 		workspaces = {
 			{
 				name = "personal",
