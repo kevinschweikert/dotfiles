@@ -94,3 +94,5 @@
         all = true
 [help]
         autocorrect = prompt
+[difftool "difftastic"]
+	cmd = difft \"$LOCAL\" \"$REMOTE\"
