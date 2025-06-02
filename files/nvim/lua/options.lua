@@ -80,6 +80,15 @@ vim.opt.completeopt = "menu,menuone,noinsert,popup,fuzzy"
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
+-- formatoptions = "jcroqlnt"
+-- j: Remove comment leader when joining lines (intelligent comment handling)
+-- c: Auto-wrap comments using textwidth, inserting comment leader automatically
+-- r: Automatically insert comment leader after <Enter> in Insert mode
+-- o: Automatically insert comment leader after 'o' or 'O' in Normal mode
+-- q: Allow formatting of comments with "gq" command
+-- l: Long lines are not broken in insert mode (if line was long when entering insert mode)
+-- n: Recognize numbered lists when formatting text (handles indentation properly)
+-- t: Auto-wrap text using textwidth (but you likely don't have textwidth set)
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.inccommand = "nosplit" -- preview incremental substitute

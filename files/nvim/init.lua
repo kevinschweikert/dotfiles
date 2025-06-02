@@ -21,22 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Prepend mise shims to PATH
 vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
 
-vim.lsp.enable({
-	"biome",
-	"dprint",
-	"emmet",
-	"gleam",
-	"go",
-	"lexical",
-	"lua",
-	"marksman",
-	"pyright",
-	"ruff",
-	"rust",
-	"tailwind",
-	"typescript",
-})
-
+require("lsp")
 require("options")
 require("keymaps")
 require("autocmds")
@@ -71,21 +56,5 @@ require("lazy").setup({
 				"zipPlugin",
 			},
 		},
-	},
-})
-
-vim.diagnostic.config({
-	signs = { priority = 9999 },
-	underline = true,
-	update_in_insert = false, -- false so diags are updated on InsertLeave
-	virtual_text = { current_line = true, severity = { min = "INFO", max = "WARN" } },
-	virtual_lines = { current_line = true, severity = { min = "ERROR" } },
-	severity_sort = true,
-	float = {
-		focusable = false,
-		style = "minimal",
-		border = "rounded",
-		source = true,
-		header = "",
 	},
 })

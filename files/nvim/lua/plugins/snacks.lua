@@ -7,7 +7,12 @@ return {
 		quickfile = { enabled = true },
 		words = { enabled = true },
 		scratch = { enabled = true },
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			sources = {
+				files = { hidden = true },
+			},
+		},
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		scope = { enabled = true },
@@ -31,7 +36,7 @@ return {
 		{
 			"<leader><space>",
 			function()
-				Snacks.picker.files({ hidden = true })
+				Snacks.picker.files()
 			end,
 			desc = "Find Files",
 		},
