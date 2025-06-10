@@ -1,4 +1,3 @@
----
 - name: create config dir
   file:
     path: ~/.config/fish
@@ -17,6 +16,14 @@
   copy:
     src: files/fish/functions/
     dest: ~/.config/fish/functions/
+    mode: 0644
+    state: link
+    force: true
+
+- name: link fish themes
+  copy:
+    src: files/fish/colors/
+    dest: ~/.config/fish/colors/
     mode: 0644
     state: link
     force: true
