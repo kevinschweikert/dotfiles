@@ -18,6 +18,10 @@
 	set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 	unstage = reset HEAD
 	undo-commit = reset --soft HEAD^
+	[alias]
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	ddiff = -c diff.external=difft diff
 [push]
 	autoSetupRemote = true
 	followtags = true
@@ -64,7 +68,6 @@
 [receive]
 	fsckObjects = true
 [diff]
-	external = difft
 	tool = difftastic
         algorithm = histogram
         colorMoved = plain
