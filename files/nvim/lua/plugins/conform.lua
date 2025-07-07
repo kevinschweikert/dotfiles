@@ -42,7 +42,7 @@ return {
 				prepend_args = { "-i", "2" },
 			},
 			yamlfmt = {
-				prepend_args = { "-formatter", "retain_line_breaks_single=true" },
+				prepend_args = { "-formatter", "retain_line_breaks_single=true", "drop_merge_tag=true" },
 			},
 		},
 	},
