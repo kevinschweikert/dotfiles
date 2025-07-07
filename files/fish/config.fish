@@ -17,6 +17,7 @@ set -x CFLAGS "-O2 -g -march=native"
 set -x FZF_DEFAULT_COMMAND 'fd . --hidden --exclude ".git"'
 set -x MIX_OS_DEPS_COMPILE_PARTITION_COUNT 5
 set -x XDG_CONFIG_HOME $HOME/.config
+set -x MIX_XDG true
 
 # fzf catpuccin moccha
 set -Ux FZF_DEFAULT_OPTS "\
