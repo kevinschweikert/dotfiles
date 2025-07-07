@@ -35,6 +35,9 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				transparent_background = false,
+			})
 			-- Load the colorscheme here
 			vim.cmd.colorscheme("catppuccin-mocha")
 
