@@ -31,12 +31,16 @@ vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus"
 end)
 
+vim.opt.autoindent = true
+vim.o.copyindent = true
 vim.opt.breakindent = true -- Enable break indent
 vim.opt.wrap = true -- enable line wrap
 vim.opt.linebreak = true -- enable line wrap
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.backup = false
+vim.opt.writebackup = false
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
@@ -47,6 +51,7 @@ vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
+vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
@@ -109,7 +114,6 @@ vim.opt.splitkeep = "screen"
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
 vim.opt.termguicolors = true -- True color support
-vim.opt.timeoutlen = 300
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
 vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -123,3 +127,5 @@ vim.opt.foldlevel = 99
 vim.opt.foldenable = false
 vim.opt.foldlevelstart = 99 -- when opening a file
 vim.opt.foldnestmax = 4 -- max nesting
+
+vim.filetype.add({ extension = { livemd = "markdown" } })
