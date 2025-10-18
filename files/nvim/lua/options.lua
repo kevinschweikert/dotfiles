@@ -15,7 +15,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = "a"
@@ -89,8 +89,8 @@ vim.opt.autowrite = true -- Enable auto write
 vim.opt.autocomplete = false
 vim.opt.autocompletedelay = 300
 vim.opt.complete = { "o", "." }
-vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup", "fuzzy", "preview" }
--- vim.opt.winborder = "rounded" -- Use rounded borders for windows
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup", "fuzzy", "preview", "noselect" }
+vim.opt.winborder = "rounded" -- Use rounded borders for windows
 -- vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.expandtab = true -- Use spaces instead of tabs

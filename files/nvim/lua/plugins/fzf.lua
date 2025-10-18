@@ -1,14 +1,5 @@
-return {
-	"ibhagwan/fzf-lua",
-	-- optional for icon support
-	-- dependencies = { "nvim-tree/nvim-web-devicons" },
-	-- or if using mini.icons/mini.nvim
-	dependencies = { "echasnovski/mini.icons" },
-	config = function(_, opts)
-		require("fzf-lua").setup(opts)
-		require("fzf-lua").register_ui_select()
-	end,
-	opts = {
+vim.pack.add( { "https://github.com/ibhagwan/fzf-lua", "https://github.com/echasnovski/mini.icons" })
+		require("fzf-lua").setup({
 		keymap = {
 			fzf = {
 				-- use cltr-q to select all items and convert to quickfix list
@@ -25,5 +16,6 @@ return {
 				syntax_limit_b = 1024 * 100, -- 100KB
 			},
 		},
-	},
-}
+	})
+
+		require("fzf-lua").register_ui_select()

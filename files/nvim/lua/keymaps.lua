@@ -30,8 +30,11 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center after half page jump" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center after half page jump" })
 
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open Lazy Plugin Manager" })
-vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "LSP format" })
+
+vim.keymap.set("n", "<leader>pu", function()
+	vim.pack.update()
+end, { desc = "Update packages" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 --
 -- windows
@@ -58,6 +61,25 @@ end)
 vim.keymap.set("n", "<leader>qs", function()
 	require("persistence").select()
 end)
+
+-- oil
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+
+-- gx
+vim.keymap.set("n", "gx", "<Cmd>Browse<cr>", { desc = "Browse file/url" })
+
+-- conform
+vim.keymap.set("n", "<leader>f", function()
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Conform format" })
+
+-- mason
+vim.keymap.set("n", "<leader>m", "<Cmd>Mason<cr>", { desc = "Open Mason" })
+
+-- neogit
+vim.keymap.set("n", "<leader>n", function()
+	require("neogit").open()
+end, { desc = "Open Neogit" })
 
 vim.keymap.set({ "n", "v" }, "<Up>", "gk", { desc = "Move up a screenline" })
 vim.keymap.set({ "n", "v" }, "<Down>", "gj", { desc = "Move down a screenline" })

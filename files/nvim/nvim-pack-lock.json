@@ -1,0 +1,22 @@
+{
+	"plugins": {
+		"Comment.nvim": [],
+		"conform.nvim": [],
+		"fidget.nvim": [],
+		"fzf-lua": [],
+		"gx.nvim": [],
+		"kitty-scrollback.nvim": [],
+		"mason.nvim": [],
+		"mini.icons": [],
+		"neogit": [],
+		"nvim-treesitter": {
+			"version": "'main'"
+		},
+		"oil.nvim": [],
+		"persistence.nvim": [],
+		"plenary.nvim": [],
+		"todo-comments.nvim": [],
+		"vim-kitty": []
+	}
+}
+

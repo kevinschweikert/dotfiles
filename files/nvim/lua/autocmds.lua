@@ -5,6 +5,18 @@ local function augroup(name)
 	return vim.api.nvim_create_augroup(name, { clear = true })
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(details)
+		local bufnr = details.buf
+		if not pcall(vim.treesitter.start, bufnr) then -- try to start treesitter which enables syntax highlighting
+			return -- Exit if treesitter was unable to start
+		end
+		vim.bo[bufnr].syntax = "on" -- Use regex based syntax-highlighting as fallback as some plugins might need it
+		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Use treesitter for folds
+		vim.bo[bufnr].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- Use treesitter for indentation
+	end,
+})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -141,20 +153,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if client:supports_method("textDocument/documentColor") and vim.version().minor > 11 then
 			vim.lsp.document_color.enable(true, ev.buf)
 		end
-	end,
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if client == nil then
-			return
-		end
 		if client.name == "ruff" then
 			-- Disable hover in favor of Pyright
 			client.server_capabilities.hoverProvider = false
 		end
 	end,
-	desc = "LSP: Disable hover capability from Ruff",
 })
