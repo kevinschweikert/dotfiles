@@ -1,1 +1,1 @@
-return { 'echasnovski/mini.ai', version = '*', opts = {} }
+return { "echasnovski/mini.ai", enabled = false, version = "*", opts = {} }

@@ -62,6 +62,33 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+-- Restore session on nvim open
+-- vim.api.nvim_create_autocmd("VimEnter", {
+-- 	group = augroup("restore_session"),
+-- 	callback = function()
+-- 		local status, persistence = pcall(require, "persistence")
+-- 		if status then
+-- 			persistence.load()
+-- 		else
+-- 			vim.notify("Persistence plugin not found", vim.log.levels.WARN)
+-- 		end
+-- 	end,
+-- 	nested = true,
+-- })
+
+-- Create custom command for session restore
+vim.api.nvim_create_user_command("RestoreSession", function()
+	-- Use vim.defer_fn to ensure plugins are loaded
+	vim.defer_fn(function()
+		local status, persistence = pcall(require, "persistence")
+		if status then
+			persistence.load()
+		else
+			vim.notify("Persistence plugin not found", vim.log.levels.WARN)
+		end
+	end, 100) -- 100ms delay to ensure lazy loading is complete
+end, { desc = "Restore session using persistence" })
+
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	group = augroup("auto_create_dir"),

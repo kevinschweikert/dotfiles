@@ -11,6 +11,10 @@ Host *
     usekeychain yes
     addkeystoagent yes
 
+Host nerves*.local
+  StrictHostKeyChecking no
+  UserKnownHostsFile=/dev/null
+
 Host gitlab.im-en.com
     hostname gitlab.im-en.com
     user kschweikert

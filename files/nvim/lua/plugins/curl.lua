@@ -1,6 +1,7 @@
 return {
 	"oysandvik94/curl.nvim",
 	cmd = { "CurlOpen" },
+	enabled = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},

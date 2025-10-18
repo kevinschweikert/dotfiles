@@ -47,12 +47,12 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:1"
 
 -- Decrease update time
 vim.opt.updatetime = 250
 vim.opt.timeout = true
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -79,8 +79,18 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
+if vim.fn.has("nvim-0.12") == 1 then
+	vim.o.diffopt = "internal,filler,closeoff,inline:char,linematch:40,algorithm:patience,indent-heuristic"
+elseif vim.fn.has("nvim-0.11") == 1 then
+	vim.o.diffopt = "internal,filler,closeoff,linematch:40"
+end
+
 vim.opt.autowrite = true -- Enable auto write
-vim.opt.completeopt = "menu,menuone,noinsert,popup,fuzzy"
+vim.opt.autocomplete = false
+vim.opt.autocompletedelay = 300
+vim.opt.complete = { "o", "." }
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup", "fuzzy", "preview" }
+-- vim.opt.winborder = "rounded" -- Use rounded borders for windows
 -- vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 vim.opt.expandtab = true -- Use spaces instead of tabs
@@ -104,7 +114,11 @@ vim.opt.sessionoptions =
 	{ "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds", "terminal" }
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+-- I: Don't show intro
+-- c: don't give ins-completion messages
+-- C: don't give messages while scanning for ins-completions
+-- W	don't give "written" or "[w]" when writing a file
+vim.opt.shortmess:append({ W = true, c = true, C = true })
 vim.opt.showmode = false -- Dont show mode since we have a statusline
 vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.smartindent = true -- Insert indents automatically

@@ -89,6 +89,9 @@ direnv hook fish | source
 # uv
 fish_add_path "/Users/kevinschweikert/.local/bin"
 
+# bob
+fish_add_path "/Users/kevinschweikert/.local/share/bob/nvim-bin"
+
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.fish 2>/dev/null || :

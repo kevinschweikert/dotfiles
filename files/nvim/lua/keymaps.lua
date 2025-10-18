@@ -42,6 +42,22 @@ vim.keymap.set("n", "<leader>w|", "<C-W>v", { desc = "Split window right", remap
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split window below", remap = true })
 vim.keymap.set("n", "<leader>|", "<C-W>v", { desc = "Split window right", remap = true })
 
+-- fzf
+vim.keymap.set("n", "<leader><space>", function()
+	require("fzf-lua").files({ formatter = { "path.filename_first", 2 } })
+end, { desc = "Find files" })
+vim.keymap.set("n", "<leader>r", ":FzfLua resume<cr>", { desc = "Resume picker" })
+vim.keymap.set("n", "<leader>/", ":FzfLua live_grep<cr>", { desc = "Live Grep" })
+vim.keymap.set("n", "<leader>ss", ":FzfLua lsp_document_symbols<cr>", { desc = "Find document symbols" })
+vim.keymap.set("n", "<leader>sS", ":FzfLua lsp_workspace_symbols<cr>", { desc = "Find workspace symbols" })
+
+-- persistence
+vim.keymap.set("n", "<leader>ql", function()
+	require("persistence").load()
+end)
+vim.keymap.set("n", "<leader>qs", function()
+	require("persistence").select()
+end)
 
 vim.keymap.set({ "n", "v" }, "<Up>", "gk", { desc = "Move up a screenline" })
 vim.keymap.set({ "n", "v" }, "<Down>", "gj", { desc = "Move down a screenline" })

@@ -1,5 +1,6 @@
 return {
 	"echasnovski/mini.statusline",
+	enabled = false,
 	specs = {
 		{ "nvim-tree/nvim-web-devicons", enabled = false },
 	},

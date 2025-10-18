@@ -4,7 +4,7 @@ vim.lsp.enable({
 	"emmet",
 	"gleam",
 	"go",
-	"lexical",
+	"elixir",
 	"lua",
 	"marksman",
 	"pyright",
