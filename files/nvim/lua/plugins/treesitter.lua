@@ -77,19 +77,10 @@ nts.install(parsers)
 
 vim.api.nvim_create_autocmd("PackChanged", {
   desc = "Handle nvim-treesitter updates",
-  group = vim.api.nvim_create_augroup(
-    "nvim-treesitter-pack-changed-update-handler",
-    { clear = true }
-  ),
+  group = vim.api.nvim_create_augroup("nvim-treesitter-pack-changed-update-handler", { clear = true }),
   callback = function(event)
-    if
-      event.data.kind == "update"
-      and event.data.spec.name == "nvim-treesitter"
-    then
-      vim.notify(
-        "nvim-treesitter updated, running TSUpdate...",
-        vim.log.levels.INFO
-      )
+    if event.data.kind == "update" and event.data.spec.name == "nvim-treesitter" then
+      vim.notify("nvim-treesitter updated, running TSUpdate...", vim.log.levels.INFO)
       nts.update()
     end
   end,

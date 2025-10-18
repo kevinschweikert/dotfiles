@@ -1,18 +1,14 @@
 -- [[ Basic Autocommands ]]
 --  See :help lua-guide-autocommands
 --
-local function augroup(name)
-  return vim.api.nvim_create_augroup(name, { clear = true })
-end
+local function augroup(name) return vim.api.nvim_create_augroup(name, { clear = true }) end
 
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)
     local bufnr = args.buf
 
-    -- Try to start treesitter highlighting
     if not pcall(vim.treesitter.start, bufnr) then return end
 
-    -- Treesitter-based folding (provided by Neovim)
     vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
     vim.wo.foldmethod = "expr"
 
@@ -53,12 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set(
-      "n",
-      "q",
-      "<cmd>close<cr>",
-      { buffer = event.buf, silent = true }
-    )
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
 
@@ -131,15 +122,13 @@ vim.api.nvim_create_autocmd({ "RecordingEnter" }, {
 
 vim.api.nvim_create_autocmd({ "RecordingLeave" }, {
   group = augroup("hide_q_macro"),
-  callback = function()
-    vim.notify("Stopped recording @" .. vim.fn.reg_recording())
-  end,
+  callback = function() vim.notify("Stopped recording @" .. vim.fn.reg_recording()) end,
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
+  group = augroup("lsp"),
   callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client == nil then return end
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
     if client:supports_method("textDocument/completion") then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
@@ -147,10 +136,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       local win = vim.api.nvim_get_current_win()
       vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
     end
-    if
-      client:supports_method("textDocument/documentColor")
-      and vim.version().minor > 11
-    then
+    if client:supports_method("textDocument/documentColor") and vim.version().minor > 11 then
       vim.lsp.document_color.enable(true, ev.buf)
     end
     if client.name == "ruff" then

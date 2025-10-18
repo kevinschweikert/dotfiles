@@ -27,9 +27,7 @@ vim.opt.showmode = false
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-	vim.opt.clipboard = "unnamedplus"
-end)
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 vim.opt.autoindent = true
 vim.o.copyindent = true
@@ -80,9 +78,9 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 
 if vim.fn.has("nvim-0.12") == 1 then
-	vim.o.diffopt = "internal,filler,closeoff,inline:char,linematch:40,algorithm:patience,indent-heuristic"
+  vim.o.diffopt = "internal,filler,closeoff,inline:char,linematch:40,algorithm:patience,indent-heuristic"
 elseif vim.fn.has("nvim-0.11") == 1 then
-	vim.o.diffopt = "internal,filler,closeoff,linematch:40"
+  vim.o.diffopt = "internal,filler,closeoff,linematch:40"
 end
 
 vim.opt.autowrite = true -- Enable auto write
@@ -105,13 +103,22 @@ vim.opt.formatoptions = "jcroqlnt" -- tcqj
 -- n: Recognize numbered lists when formatting text (handles indentation properly)
 -- t: Auto-wrap text using textwidth (but you likely don't have textwidth set)
 vim.opt.grepformat = "%f:%l:%c:%m"
-vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepprg = "rg --vimgrep -uu"
 vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
-vim.opt.sessionoptions =
-	{ "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds", "terminal" }
+vim.opt.sessionoptions = {
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "globals",
+  "skiprtp",
+  "folds",
+  "terminal",
+}
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
 -- I: Don't show intro

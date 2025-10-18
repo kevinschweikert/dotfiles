@@ -1,3 +1,4 @@
-vim.pack.add( {
-	"https://github.com/folke/persistence.nvim"})
-	require("persistence").setup({})
+vim.pack.add({
+  "https://github.com/folke/persistence.nvim",
+})
+require("persistence").setup({})
