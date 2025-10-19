@@ -12,28 +12,13 @@ local function toggle_diagnostics()
 end
 
 -- Quickfix keymaps
-vim.keymap.set("n", "[g", "<cmd>cprev<cr>", { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]g", "<cmd>cnext<cr>", { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>gg", "<cmd>copen<cr>", { desc = "Show diagnostic [E]rror messages" })
 
 -- Diagnostic keymaps
-vim.keymap.set(
-  "n",
-  "[d",
-  function() vim.diagnostic.jump({ count = 1, float = true }) end,
-  { desc = "Go to previous [D]iagnostic message" }
-)
-vim.keymap.set(
-  "n",
-  "]d",
-  function() vim.diagnostic.jump({ count = -1, float = true }) end,
-  { desc = "Go to next [D]iagnostic message" }
-)
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-vim.keymap.set("n", "[l", "<cmd>lnext<cr>", { desc = "Go to previous loclist item" })
-vim.keymap.set("n", "]l", "<cmd>lnext<cr>", { desc = "Go to next loclist item" })
 vim.keymap.set("n", "<leader>td", toggle_diagnostics, { desc = "[T]oggle [D]iagnostics" })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
