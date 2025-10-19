@@ -1,22 +1,26 @@
 {
-	"plugins": {
-		"Comment.nvim": [],
-		"conform.nvim": [],
-		"fidget.nvim": [],
-		"fzf-lua": [],
-		"gx.nvim": [],
-		"kitty-scrollback.nvim": [],
-		"mason.nvim": [],
-		"mini.icons": [],
-		"neogit": [],
-		"nvim-treesitter": {
-			"version": "'main'"
-		},
-		"oil.nvim": [],
-		"persistence.nvim": [],
-		"plenary.nvim": [],
-		"todo-comments.nvim": [],
-		"vim-kitty": []
-	}
+  "plugins": {
+    "Comment.nvim": [],
+    "catppuccin": [],
+    "conform.nvim": [],
+    "fidget.nvim": [],
+    "fzf-lua": {
+      "rev": "d45ce94"
+    },
+    "gx.nvim": [],
+    "kitty-scrollback.nvim": [],
+    "mason.nvim": [],
+    "mini.icons": [],
+    "neogit": [],
+    "nvim-treesitter": {
+      "rev": "71bf1665",
+      "version": "'main'"
+    },
+    "oil.nvim": [],
+    "persistence.nvim": [],
+    "plenary.nvim": [],
+    "todo-comments.nvim": [],
+    "vim-kitty": [],
+    "vim-sleuth": []
+  }
 }
-
