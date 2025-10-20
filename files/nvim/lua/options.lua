@@ -47,6 +47,9 @@ vim.opt.list = false
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.winborder = "rounded" -- Use rounded borders for windows
 
+-- cursor
+vim.opt.guicursor = "n-v-c-ve:block,i-ci:ver25,r-cr:hor20,o:hor50"
+
 -- file handling
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
