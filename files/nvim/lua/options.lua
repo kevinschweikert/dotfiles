@@ -1,97 +1,104 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- key mappings
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.have_nerd_font = true
-
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
-
--- Make line numbers default
+-- basic settings
 vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = false
+vim.opt.cursorline = true
+vim.opt.wrap = false -- enable line wrap
+vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 8
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = "a"
-
--- Don't show the mode, since it's already in status line
-vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
-
+-- indentation
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2 -- Size of an indent
+vim.opt.shiftround = true -- Round indent
 vim.opt.autoindent = true
-vim.o.copyindent = true
+vim.opt.copyindent = true
 vim.opt.breakindent = true -- Enable break indent
-vim.opt.wrap = true -- enable line wrap
 vim.opt.linebreak = true -- enable line wrap
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.expandtab = true -- Use spaces instead of tabs
 
--- Save undo history
-vim.opt.undofile = true
-vim.opt.backup = false
-vim.opt.writebackup = false
-
--- Case-insensitive searching UNLESS \C or capital in search
+-- search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "yes:1"
+-- visual
+vim.g.have_nerd_font = true
+vim.opt.termguicolors = true -- True color support
+vim.opt.signcolumn = "yes"
+vim.opt.showmatch = true
+vim.opt.matchtime = 2
+vim.opt.cmdheight = 1
+vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup", "fuzzy", "preview", "noselect" }
+vim.opt.showmode = false
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.winblend = 10 -- window blend
+vim.opt.conceallevel = 0 -- Don't hide markup
+vim.opt.lazyredraw = true
+vim.opt.synmaxcol = 300
+vim.opt.list = false
+vim.opt.laststatus = 3 -- global statusline
+vim.opt.winborder = "rounded" -- Use rounded borders for windows
 
--- Decrease update time
-vim.opt.updatetime = 250
+-- file handling
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 300
 vim.opt.timeout = true
 vim.opt.timeoutlen = 500
+vim.opt.autoread = true
+vim.opt.autowrite = false
 
--- Configure how new splits should be opened
+vim.opt.hidden = true -- Allow hidden buffers
+vim.opt.errorbells = false -- No error bells
+vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
+vim.opt.autochdir = false -- Don't auto change directory
+vim.opt.iskeyword:append("-") -- Treat dash as part of word
+vim.opt.path:append("**") -- include subdirectories in search
+vim.opt.selection = "exclusive" -- Selection behavior
+vim.opt.mouse = "a" -- Enable mouse support
+vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
+vim.opt.modifiable = true -- Allow buffer modifications
+vim.opt.encoding = "UTF-8" -- Set encoding
+-- vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+
+-- split behavior
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace in the editor.
---  See :help 'list'
---  and :help 'listchars'
-vim.opt.list = false
--- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
+-- folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldlevel = 99
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+-- Performance improvements
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
+-- diffing
+vim.opt.diffopt:append("linematch:40,algorithm:patience,indent-heuristic")
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
+-- command line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = { "longest:full", "full" } -- Command-line completion mode
 
-if vim.fn.has("nvim-0.12") == 1 then
-  vim.o.diffopt = "internal,filler,closeoff,inline:char,linematch:40,algorithm:patience,indent-heuristic"
-elseif vim.fn.has("nvim-0.11") == 1 then
-  vim.o.diffopt = "internal,filler,closeoff,linematch:40"
-end
+-- tabs
+vim.opt.showtabline = 1
+vim.opt.tabline = ""
 
-vim.opt.autowrite = true -- Enable auto write
-vim.opt.autocomplete = false
-vim.opt.autocompletedelay = 300
 vim.opt.complete = { "o", "." }
-vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup", "fuzzy", "preview", "noselect" }
-vim.opt.winborder = "rounded" -- Use rounded borders for windows
--- vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
-vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.formatoptions = "jcroqlnt" -- tcqj
 -- formatoptions = "jcroqlnt"
 -- j: Remove comment leader when joining lines (intelligent comment handling)
@@ -105,9 +112,6 @@ vim.opt.formatoptions = "jcroqlnt" -- tcqj
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.grepprg = "rg --vimgrep -uu"
 vim.opt.inccommand = "nosplit" -- preview incremental substitute
-vim.opt.laststatus = 3 -- global statusline
-vim.opt.pumblend = 10 -- Popup blend
-vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.sessionoptions = {
   "buffers",
   "curdir",
@@ -119,34 +123,14 @@ vim.opt.sessionoptions = {
   "folds",
   "terminal",
 }
-vim.opt.shiftround = true -- Round indent
-vim.opt.shiftwidth = 2 -- Size of an indent
 -- I: Don't show intro
 -- c: don't give ins-completion messages
 -- C: don't give messages while scanning for ins-completions
 -- W	don't give "written" or "[w]" when writing a file
 vim.opt.shortmess:append({ W = true, c = true, C = true })
-vim.opt.showmode = false -- Dont show mode since we have a statusline
-vim.opt.sidescrolloff = 8 -- Columns of context
-vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.spelllang = { "en" }
-vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitkeep = "screen"
-vim.opt.splitright = true -- Put new windows right of current
-vim.opt.tabstop = 2 -- Number of spaces tabs count for
-vim.opt.termguicolors = true -- True color support
-vim.opt.undofile = true
-vim.opt.undolevels = 10000
-vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
-vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- vim.opt.foldtext = ""
-vim.opt.foldlevel = 99
-vim.opt.foldenable = false
-vim.opt.foldlevelstart = 99 -- when opening a file
-vim.opt.foldnestmax = 4 -- max nesting
 
 vim.filetype.add({ extension = { livemd = "markdown" } })

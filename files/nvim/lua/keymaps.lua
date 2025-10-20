@@ -11,6 +11,8 @@ local function toggle_diagnostics()
   end
 end
 
+vim.keymap.set("n", "Y", "y$", { desc = "yank until end of line" })
+
 -- Quickfix keymaps
 vim.keymap.set("n", "<leader>gg", "<cmd>copen<cr>", { desc = "Show diagnostic [E]rror messages" })
 
