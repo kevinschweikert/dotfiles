@@ -11,6 +11,7 @@ require("options")
 require("keymaps")
 require("autocmds")
 require("commands")
+require("statusline")
 
 require("plugins.catppuccin")
 require("plugins.comments")
