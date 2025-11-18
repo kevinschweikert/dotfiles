@@ -13,6 +13,7 @@ vim.lsp.enable({
   "tailwind",
   "ty",
   "typescript",
+  "typst",
 })
 
 vim.diagnostic.config({

@@ -22,5 +22,6 @@ vim.opt_local.errorformat = table.concat({
   "%-G", -- Skip everything else
 }, ",")
 
+vim.bo.formatprg = "mix format -"
 vim.opt_local.commentstring = "# %s"
 vim.opt_local.suffixesadd = ".ex,.exs"

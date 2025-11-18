@@ -67,7 +67,7 @@ vim.opt.backspace = "indent,eol,start" -- Better backspace behavior
 vim.opt.autochdir = false -- Don't auto change directory
 vim.opt.iskeyword:append("-") -- Treat dash as part of word
 vim.opt.path:append("**") -- include subdirectories in search
-vim.opt.selection = "exclusive" -- Selection behavior
+vim.opt.selection = "inclusive" -- Selection behavior
 vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.opt.modifiable = true -- Allow buffer modifications
@@ -130,7 +130,7 @@ vim.opt.sessionoptions = {
 -- c: don't give ins-completion messages
 -- C: don't give messages while scanning for ins-completions
 -- W	don't give "written" or "[w]" when writing a file
-vim.opt.shortmess:append({ W = true, c = true, C = true })
+vim.opt.shortmess:append("WcCF")
 vim.opt.spelllang = { "en" }
 vim.opt.splitkeep = "screen"
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
